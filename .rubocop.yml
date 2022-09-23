@@ -1,0 +1,10 @@
+inherit_from:
+  - .rubocop_airbnb.yml
+  - .rubocop_todo.yml
+
+AllCops:
+  NewCops: enable
+
+Bundler/OrderedGems:
+  Enabled: true
+  AutoCorrect: true

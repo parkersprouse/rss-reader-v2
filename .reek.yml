@@ -1,0 +1,15 @@
+# See https://github.com/troessner/reek#configuration for config options
+
+detectors:
+  IrresponsibleModule:
+    exclude:
+      - "RssReader" # The module defined in lib/rss_reader.rb
+
+directories:
+  "lib/rss_reader/repositories":
+    ManualDispatch:
+      enabled: false
+
+  "spec":
+    IrresponsibleModule:
+      enabled: false
