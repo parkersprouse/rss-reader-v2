@@ -1,0 +1,12 @@
+<%=
+  form_for :auth, routes.process_create_account_path do
+    div do
+      label 'E-mail', for: :email
+      email_field :email
+    end
+
+    div do
+      submit 'Create Account'
+    end
+  end
+%>

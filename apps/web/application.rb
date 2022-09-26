@@ -1,5 +1,6 @@
 require 'hanami/helpers'
 require 'hanami/assets'
+require 'rack/protection'
 
 module Web
   class Application < Hanami::Application
@@ -41,12 +42,12 @@ module Web
       # URI scheme used by the routing system to generate absolute URLs
       # Defaults to "http"
       #
-      # scheme 'https'
+      scheme Hanami.env?(:production) ? 'https' : 'http'
 
       # URI host used by the routing system to generate absolute URLs
       # Defaults to "localhost"
       #
-      # host 'example.org'
+      host ENV.fetch('HANAMI_HOST')
 
       # URI port used by the routing system to generate absolute URLs
       # Argument: An object coercible to integer, defaults to 80 if the scheme
@@ -55,6 +56,7 @@ module Web
       # This should only be configured if app listens to non-standard ports
       #
       # port 443
+      port 2300 if Hanami.env?(:development)
 
       # Enable cookies
       # Argument: boolean to toggle the feature
@@ -81,11 +83,15 @@ module Web
       #
       # See: http://www.rubydoc.info/gems/rack/Rack/Session/Cookie
       #
-      # sessions :cookie, secret: ENV['WEB_SESSIONS_SECRET']
+      sessions :cookie,
+        httponly: true,
+        key: 'session',
+        secret: ENV.fetch('WEB_SESSIONS_SECRET'),
+        secure: Hanami.env?(:production)
 
       # Configure Rack middleware for this application
       #
-      # middleware.use Rack::Protection
+      middleware.use Rack::Protection
 
       # Default format for the requests that don't specify an HTTP_ACCEPT header
       # Argument: A symbol representation of a mime type, defaults to :html

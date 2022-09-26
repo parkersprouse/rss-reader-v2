@@ -2,14 +2,14 @@ require './apps/web/mixins/check_authentication'
 
 module Web
   module Controllers
-    module Feeds
+    module Home
       class Index
         include Web::Action
         include CheckAuthentication
 
-        before :must_be_authenticated
-
-        def call(params)
+        def call(_)
+          return redirect_to routes.feed_index_path if authenticated?
+          redirect_to routes.sign_in_path
         end
       end
     end

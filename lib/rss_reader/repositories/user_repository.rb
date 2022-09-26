@@ -29,6 +29,10 @@ class UserRepository < Hanami::Repository
     configuration.connection.transaction(&block)
   end
 
+  def find_by(*args)
+    users.where(*args).as(:entity).first
+  end
+
   # @param [UUID] id
   #   The ID of the {User} that we want to get the {Feed}s for.
   #
@@ -36,5 +40,15 @@ class UserRepository < Hanami::Repository
   #   The collection of {Feed}s created by this {User}.
   def feeds_for(id:)
     feeds.where(user_id: id).as(:entity)
+  end
+
+  # @param [UUID] id
+  #   The ID of the {User} that we want to check if is active.
+  #
+  # @return [Boolean]
+  #   Whether or not the {User} has an assigned password, which will
+  #   define if it is active or not.
+  def user_active?(id:)
+    users.where(id: id).as(:entity).first.pw_hash.present?
   end
 end

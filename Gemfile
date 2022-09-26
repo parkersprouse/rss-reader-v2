@@ -1,9 +1,11 @@
 source 'https://rubygems.org'
 ruby '2.7.6'
 
-gem 'hanami',       '~> 1.3'
+gem 'bcrypt'
+gem 'hanami', '~> 1.3'
 gem 'hanami-model', '~> 1.3'
 gem 'pg'
+gem 'rack-protection'
 gem 'rake'
 
 group :development do
@@ -13,10 +15,9 @@ group :development do
   gem 'rubocop'
   gem 'rubocop-airbnb'
   gem 'sassc'
-  # Code reloading
-  # See: https://guides.hanamirb.org/projects/code-reloading
   gem 'shotgun', platforms: :ruby
   gem 'uglifier'
+  gem 'yard'
 end
 
 group :test, :development do

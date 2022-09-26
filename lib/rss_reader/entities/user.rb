@@ -22,6 +22,13 @@ class User < Hanami::Entity
     UserRepository.feeds_for(id: id)
   end
 
+  # @return [Boolean]
+  #   Whether or not the {User} has an assigned password, which will
+  #   define if it is active or not.
+  def active?
+    UserRepository.user_active?(id: id)
+  end
+
   # @param [String, Symbol]
   #   The name of the attribute we want to retrieve the value of from the object.
   # @return [any]

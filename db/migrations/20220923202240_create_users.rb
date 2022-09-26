@@ -5,7 +5,7 @@ Hanami::Model.migration do
     create_table :users do
       primary_key :id, 'uuid', null: false, default: Hanami::Model::Sql.function(:uuid_generate_v4)
       column :email, String, unique: true, index: true, null: false
-      column :pw_hash, String, null: false
+      column :pw_hash, String, null: true
       column :pw_reset_token, String, null: true
       column :pw_reset_token_sent_at, DateTime, null: true
       column :created_at, DateTime, null: false

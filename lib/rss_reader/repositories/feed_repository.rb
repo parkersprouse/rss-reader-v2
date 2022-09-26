@@ -29,12 +29,16 @@ class FeedRepository < Hanami::Repository
     configuration.connection.transaction(&block)
   end
 
+  def find_by(*args)
+    feeds.where(*args).as(:entity).first
+  end
+
   # @param [UUID] user_id
   #   The ID of the {User} who created this {Feed}.
   #
   # @return [ROM::Struct::User]
   #   The {User} who created this {Feed}.
   def user_for(user_id:)
-    users.where(id: user_id).first
+    users.where(id: user_id).as(:entity).first
   end
 end
