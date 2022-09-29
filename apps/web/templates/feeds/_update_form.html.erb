@@ -1,0 +1,12 @@
+<%=
+  form_for :feeds, routes.feed_update_path(feed[:id]), method: :patch do
+    div do
+      label 'Feed URL', for: :feed_url
+      text_field :feed_url, value: feed[:source]
+    end
+
+    div do
+      submit 'Update'
+    end
+  end
+%>

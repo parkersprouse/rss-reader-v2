@@ -1,6 +1,8 @@
 require 'hanami/helpers'
 require 'hanami/assets'
 require 'rack/protection'
+require './apps/web/mixins/action_scaffold'
+require './apps/web/mixins/check_authentication'
 
 module Web
   class Application < Hanami::Application
@@ -252,8 +254,8 @@ module Web
       #
       # See: http://www.rubydoc.info/gems/hanami-controller#Configuration
       controller.prepare do
-        # include MyAuthentication # included in all the actions
-        # before :authenticate!    # run an authentication before callback
+        include ActionScaffold
+        include CheckAuthentication
       end
 
       # Configure the code that will yield each time Web::View is included

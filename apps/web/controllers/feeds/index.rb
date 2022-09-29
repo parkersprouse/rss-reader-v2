@@ -1,15 +1,15 @@
-require './apps/web/mixins/check_authentication'
-
 module Web
   module Controllers
     module Feeds
       class Index
         include Web::Action
-        include CheckAuthentication
 
         before :must_be_authenticated
 
+        expose :feeds
+
         def call(params)
+          @feeds ||= current_user.feeds
         end
       end
     end

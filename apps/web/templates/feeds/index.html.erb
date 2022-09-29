@@ -1,1 +1,21 @@
-Imma be listing feeds here
+<div>
+  Total Feeds: <%= parsed_feeds.count %>
+</div>
+
+<%= render partial: 'create_form' %>
+
+<% parsed_feeds.each do |feed| %>
+  <div style='padding: 1rem; border: 1px solid black; margin-bottom: 1rem;'>
+    <div>
+      <%= feed[:title] %>
+    </div>
+
+    <div>
+      <%= feed[:entries].count %>
+    </div>
+
+    <div>
+      <%= render partial: 'update_form', locals: { feed: feed } %>
+    </div>
+  </div>
+<% end %>

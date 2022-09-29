@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Web</title>
+    <title>RSS Reader</title>
+    <%= stylesheet 'styles' %>
     <%= favicon %>
   </head>
   <body>
+    <%= flash[:error] %>
     <%= flash[:success] %>
     <%= yield %>
   </body>

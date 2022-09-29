@@ -1,5 +1,4 @@
 require 'bcrypt'
-require './apps/web/mixins/check_authentication'
 require './lib/rss_reader/entities/user'
 
 module Web
@@ -7,9 +6,8 @@ module Web
     module Auth
       class ProcessSignIn
         include Web::Action
-        include CheckAuthentication
 
-        before { redirect_to routes.root_path if authenticated? }
+        before :must_not_be_authenticated
         before { halt 400, 'Form not filled out' unless params.valid? }
         before { halt 401, 'Invalid e-mail or password' unless user.present? }
 

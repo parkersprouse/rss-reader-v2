@@ -1,6 +1,5 @@
 require 'bcrypt'
 require 'securerandom'
-require './apps/web/mixins/check_authentication'
 require './lib/rss_reader/entities/user'
 require './lib/rss_reader/mailers/activate_account'
 
@@ -9,9 +8,8 @@ module Web
     module Auth
       class ProcessCreateAccount
         include Web::Action
-        include CheckAuthentication
 
-        before { redirect_to routes.root_path if authenticated? }
+        before :must_not_be_authenticated
         before { halt 400, 'Form not filled out' unless params.valid? }
 
         params do
@@ -21,7 +19,6 @@ module Web
         end
 
         def call(params)
-          # pw_hash = BCrypt::Password.create(password)
           user = User.create(email: email,
             pw_reset_token: SecureRandom.hex(50),
             pw_reset_token_sent_at: DateTime.now)

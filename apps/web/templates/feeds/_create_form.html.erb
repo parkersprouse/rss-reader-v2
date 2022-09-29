@@ -1,0 +1,12 @@
+<%=
+  form_for :feeds, routes.feed_create_path do
+    div do
+      label 'Feed URL', for: :feed_url
+      text_field :feed_url
+    end
+
+    div do
+      submit 'Create'
+    end
+  end
+%>

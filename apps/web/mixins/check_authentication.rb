@@ -20,4 +20,11 @@ module CheckAuthentication
   def must_be_authenticated
     redirect_to routes.sign_in_path unless authenticated?
   end
+
+  # @return [void]
+  #   When used as a callback in an {Action}, will redirect the user to the sign in page
+  #   if the request was not made by an authenticated user.
+  def must_not_be_authenticated
+    redirect_to routes.root_path if authenticated?
+  end
 end
