@@ -9,6 +9,7 @@ gem 'pg'
 gem 'rack-protection'
 gem 'rake'
 gem 'rss'
+gem 'warden'
 
 group :development do
   gem 'babel-transpiler'

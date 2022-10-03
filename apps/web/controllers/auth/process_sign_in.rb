@@ -9,7 +9,6 @@ module Web
 
         before :must_not_be_authenticated
         before { halt 400, 'Form not filled out' unless params.valid? }
-        before { halt 401, 'Invalid e-mail or password' unless user.present? }
 
         params do
           required(:auth).schema do
@@ -19,26 +18,8 @@ module Web
         end
 
         def call(params)
-          halt 401, 'Invalid e-mail or password' unless password_correct?
-          session[:id] = user.id
+          params.env['warden'].authenticate!
           redirect_to routes.root_path
-        end
-
-        def email
-          params.get(:auth, :email)
-        end
-
-        def password
-          params.get(:auth, :password)
-        end
-
-        def password_correct?
-          return unless user.present?
-          BCrypt::Password.new(user.pw_hash) == password
-        end
-
-        def user
-          @user ||= User.find_by(email: email)
         end
       end
     end

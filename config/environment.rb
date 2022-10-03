@@ -2,6 +2,7 @@ require 'bundler/setup'
 require 'hanami/setup'
 require 'hanami/middleware/body_parser'
 require 'hanami/model'
+require 'warden'
 require_relative '../lib/rss_reader'
 require_relative '../apps/web/application'
 
@@ -9,6 +10,13 @@ Hanami.configure do
   mount Web::Application, at: '/'
 
   middleware.use Hanami::Middleware::BodyParser, :json
+  middleware.use Warden::Manager do |manager|
+    manager.default_strategies :local
+    manager.failure_app = ->(env) do
+      Web::Controllers::Auth::SignIn.new(failure_msg: env['warden'].message).call(env)
+      Web::Views::Auth::SignIn.render(env.merge(format: :html))
+    end
+  end
 
   model do
     adapter :sql, ENV.fetch('DATABASE_URL')
