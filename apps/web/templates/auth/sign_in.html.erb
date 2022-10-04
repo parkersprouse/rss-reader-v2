@@ -1,17 +1,19 @@
-<%=
-  form_for :auth, routes.process_sign_in_path do
-    div do
-      label 'E-mail', for: :email
-      email_field :email
-    end
+<div class='auth_form_container'>
+  <%=
+    form_for :auth, routes.process_sign_in_path do
+      div do
+        label 'E-mail', for: :email
+        email_field :email
+      end
 
-    div do
-      label 'Password', for: :password
-      password_field :password
-    end
+      div do
+        label 'Password', for: :password
+        password_field :password
+      end
 
-    div do
-      submit 'Sign In'
+      div do
+        submit 'Sign In'
+      end
     end
-  end
-%>
+  %>
+</div>

@@ -8,7 +8,7 @@ module Web
         include Web::View
 
         def parsed_feeds
-          feeds.map do |feed|
+          @parsed_feeds ||= feeds.map do |feed|
             output = {}.merge(feed)
 
             res = Faraday.get(feed[:source])

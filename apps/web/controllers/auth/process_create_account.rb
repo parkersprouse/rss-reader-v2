@@ -10,7 +10,6 @@ module Web
         include Web::Action
 
         before :must_not_be_authenticated
-        before { halt 400, 'Form not filled out' unless params.valid? }
 
         params do
           required(:auth).schema do
@@ -19,13 +18,24 @@ module Web
         end
 
         def call(params)
+          if params.valid?
+            create_account
+          else
+            flash[:error] = 'Please make sure the form is filled out'
+          end
+
+          redirect_to routes.create_account_path
+        end
+
+        private
+
+        def create_account
           user = User.create(email: email,
             pw_reset_token: SecureRandom.hex(50),
             pw_reset_token_sent_at: DateTime.now)
 
           Mailers::ActivateAccount.deliver(user: user, reset_route: routes.url(:reset_password))
           flash[:success] = 'Check your e-mail to finish account setup'
-          redirect_to routes.create_account_path
         end
 
         def email

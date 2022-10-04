@@ -4,14 +4,14 @@ module CheckAuthentication
   # @return [Boolean]
   #   Whether or not the user is currently authenticated.
   def authenticated?
-    params.env['warden'].authenticated?
+    session[:user_id].present?
   end
 
   # @return [User]
   #   The currently authenticated user, if there is an authenticated user.
   def current_user
     return nil unless authenticated?
-    params.env['warden'].user
+    @user ||= User.find_by(id: session[:user_id])
   end
 
   # @return [void]

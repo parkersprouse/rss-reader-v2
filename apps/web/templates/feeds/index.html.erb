@@ -4,18 +4,31 @@
 
 <%= render partial: 'create_form' %>
 
-<% parsed_feeds.each do |feed| %>
-  <div style='padding: 1rem; border: 1px solid black; margin-bottom: 1rem;'>
-    <div>
-      <%= feed[:title] %>
-    </div>
 
-    <div>
-      <%= feed[:entries].count %>
-    </div>
+<div style='display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; align-content: center;'>
+  <% parsed_feeds.each do |feed| %>
+    <div style='flex: 1; min-width: 20%; padding: 1rem; border: 1px solid black; margin-bottom: 1rem;'>
+      <div>
+        <%= feed[:title] %>
+      </div>
 
-    <div>
-      <%= render partial: 'update_form', locals: { feed: feed } %>
+      <hr />
+
+      <div>
+        <%= render partial: 'update_form', locals: { feed: feed } %>
+      </div>
+
+      <hr />
+
+      <div style='max-height: 300px; overflow: auto;'>
+        <ul>
+        <% feed[:entries].each do |entry| %>
+          <li>
+            <a href='<%= entry.link %>' target='_blank'><%= entry.title %></a>
+          </li>
+        <% end %>
+        </ul>
+      </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
