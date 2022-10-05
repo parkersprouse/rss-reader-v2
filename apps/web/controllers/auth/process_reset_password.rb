@@ -6,6 +6,8 @@ module Web
       class ProcessResetPassword
         include Web::Action
 
+        handle_exception AuthFormInvalid => :handle_invalid_form
+
         before :must_not_be_authenticated
 
         params do
@@ -17,10 +19,8 @@ module Web
         end
 
         def call(params)
-          unless params.valid? && user.present?
-            flash[:error] = 'Provided token is invalid'
-            redirect_to routes.reset_password_path
-          end
+          raise AuthFormInvalid.new('Please make sure the form is filled out') unless params.valid?
+          raise AuthFormInvalid.new('Provided token is invalid') if user.blank?
 
           pw_hash = BCrypt::Password.create(new_password)
           user.update(pw_hash: pw_hash, pw_reset_token: nil, pw_reset_token_sent_at: nil)
@@ -41,6 +41,11 @@ module Web
 
         def user
           @user ||= User.find_by(pw_reset_token: token)
+        end
+
+        def handle_invalid_form(exception)
+          flash[:error] = exception.message || 'Failed to reset password'
+          redirect_to "#{routes.reset_password_path}#{token.present? ? '?token=' + token : ''}"
         end
       end
     end

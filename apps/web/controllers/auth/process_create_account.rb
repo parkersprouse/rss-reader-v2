@@ -9,6 +9,8 @@ module Web
       class ProcessCreateAccount
         include Web::Action
 
+        handle_exception AuthFormInvalid => :handle_invalid_form
+
         before :must_not_be_authenticated
 
         params do
@@ -18,12 +20,8 @@ module Web
         end
 
         def call(params)
-          if params.valid?
-            create_account
-          else
-            flash[:error] = 'Please make sure the form is filled out'
-          end
-
+          raise AuthFormInvalid.new('Please make sure the form is filled out') unless params.valid?
+          create_account
           redirect_to routes.create_account_path
         end
 
@@ -40,6 +38,11 @@ module Web
 
         def email
           params.get(:auth, :email)
+        end
+
+        def handle_invalid_form(exception)
+          flash[:error] = exception.message || 'Please make sure the form is filled out'
+          redirect_to routes.create_account_path
         end
       end
     end

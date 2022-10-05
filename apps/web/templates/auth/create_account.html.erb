@@ -1,12 +1,15 @@
-<%=
-  form_for :auth, routes.process_create_account_path do
-    div do
-      label 'E-mail', for: :email
-      email_field :email
-    end
+<div class='auth_form_container'>
+  <%= flash[:error] %>
+  <%=
+    form_for :auth, routes.process_create_account_path do
+      div do
+        label 'E-mail', for: :email
+        email_field :email
+      end
 
-    div do
-      submit 'Create Account'
+      div do
+        submit 'Create Account'
+      end
     end
-  end
-%>
+  %>
+</div>

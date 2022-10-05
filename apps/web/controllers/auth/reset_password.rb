@@ -7,13 +7,14 @@ module Web
         before :must_not_be_authenticated
 
         expose :new_account
+        expose :user
 
         params do
           required(:token).filled(:str?)
         end
 
         def call(params)
-          return flash[:error] = 'Provided token is invalid' unless params.valid? && user.present?
+          flash[:error] = 'Provided token is invalid' unless params.valid? && user.present?
         end
 
         def new_account

@@ -7,6 +7,8 @@ module Web
       class ProcessSignIn
         include Web::Action
 
+        handle_exception AuthFormInvalid => :handle_invalid_form
+
         before :must_not_be_authenticated
 
         params do
@@ -17,13 +19,9 @@ module Web
         end
 
         def call(params)
-          if params.valid? && passwords_match?
-            session[:user_id] = user.id
-            return redirect_to routes.root_path
-          end
-
-          flash[:error] = 'Invalid e-mail or password'
-          redirect_to routes.sign_in_path
+          raise AuthFormInvalid.new('Invalid e-mail or password') unless params.valid? && passwords_match?
+          session[:user_id] = user.id
+          redirect_to routes.root_path
         end
 
         private
@@ -42,6 +40,11 @@ module Web
 
         def user
           @user ||= User.find_by(email: email)
+        end
+
+        def handle_invalid_form(exception)
+          flash[:error] = exception.message || 'Invalid e-mail or password'
+          redirect_to routes.sign_in_path
         end
       end
     end

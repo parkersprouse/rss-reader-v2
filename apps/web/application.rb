@@ -272,16 +272,14 @@ module Web
     # DEVELOPMENT
     #
     configure :development do
-      # Don't handle exceptions, render the stack trace
-      handle_exceptions false
+
     end
 
     ##
     # TEST
     #
     configure :test do
-      # Don't handle exceptions, render the stack trace
-      handle_exceptions false
+
     end
 
     ##
