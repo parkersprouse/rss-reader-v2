@@ -7,9 +7,12 @@ module Web
       class ProcessSignIn
         include Web::Action
 
-        handle_exception AuthFormInvalid => :handle_invalid_form
+        handle_exception AuthFormError => :handle_error
 
         before :must_not_be_authenticated
+        before do
+          raise AuthFormError, 'Invalid e-mail or password' unless params.valid? && user.present? && passwords_match?
+        end
 
         params do
           required(:auth).schema do
@@ -19,9 +22,10 @@ module Web
         end
 
         def call(params)
-          raise AuthFormInvalid.new('Invalid e-mail or password') unless params.valid? && passwords_match?
           session[:user_id] = user.id
           redirect_to routes.root_path
+        rescue Hanami::Model::Error
+          raise AuthFormError, 'There was a problem signing you in'
         end
 
         private
@@ -42,8 +46,8 @@ module Web
           @user ||= User.find_by(email: email)
         end
 
-        def handle_invalid_form(exception)
-          flash[:error] = exception.message || 'Invalid e-mail or password'
+        def handle_error(exception)
+          flash[:error] = exception.message || 'There was a problem signing you in'
           redirect_to routes.sign_in_path
         end
       end

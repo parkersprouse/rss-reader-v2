@@ -1,9 +1,6 @@
 module ActionScaffold
-  class AuthFormInvalid < StandardError
-    def initialize(msg)
-      super msg
-    end
-  end
+  AuthFormError = Class.new(StandardError)
+  FeedFormError = Class.new(StandardError)
 
   def self.included(action)
     action.class_eval do

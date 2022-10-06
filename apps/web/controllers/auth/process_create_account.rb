@@ -9,9 +9,10 @@ module Web
       class ProcessCreateAccount
         include Web::Action
 
-        handle_exception AuthFormInvalid => :handle_invalid_form
+        handle_exception AuthFormError => :handle_error
 
         before :must_not_be_authenticated
+        before { raise AuthFormError, 'Please make sure the form is filled out' unless params.valid? }
 
         params do
           required(:auth).schema do
@@ -20,19 +21,21 @@ module Web
         end
 
         def call(params)
-          raise AuthFormInvalid.new('Please make sure the form is filled out') unless params.valid?
           create_account
           redirect_to routes.create_account_path
+        rescue Hanami::Model::Error, Hanami::Mailer::Error
+          raise AuthFormError, 'There was a problem creating your account'
         end
 
         private
 
         def create_account
-          user = User.create(email: email,
-            pw_reset_token: SecureRandom.hex(50),
-            pw_reset_token_sent_at: DateTime.now)
-
-          Mailers::ActivateAccount.deliver(user: user, reset_route: routes.url(:reset_password))
+          User.transaction do
+            user = User.create(email: email,
+              pw_reset_token: SecureRandom.hex(50),
+              pw_reset_token_sent_at: DateTime.now)
+            Mailers::ActivateAccount.deliver(user: user, reset_route: routes.url(:reset_password))
+          end
           flash[:success] = 'Check your e-mail to finish account setup'
         end
 
@@ -40,8 +43,8 @@ module Web
           params.get(:auth, :email)
         end
 
-        def handle_invalid_form(exception)
-          flash[:error] = exception.message || 'Please make sure the form is filled out'
+        def handle_error(exception)
+          flash[:error] = exception.message || 'There was a problem creating your account'
           redirect_to routes.create_account_path
         end
       end

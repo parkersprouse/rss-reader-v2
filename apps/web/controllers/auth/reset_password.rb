@@ -28,6 +28,7 @@ module Web
         end
 
         def user
+          return if token.blank?
           @user ||= User.find_by(pw_reset_token: token)
         end
       end
