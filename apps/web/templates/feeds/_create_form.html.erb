@@ -1,12 +1,24 @@
 <%=
   form_for :feeds, routes.feed_create_path do
-    div do
-      label 'Feed URL', for: :feed_url
-      text_field :feed_url
+    if flash[:error].present?
+      span class: 'gra-block gra-mg-bottom-m gra-alert red', role: 'alert' do
+        flash[:error]
+      end
     end
 
-    div do
-      submit 'Create'
+    div class: 'add-feed-form' do
+      div class: 'gra-form-group' do
+        span class: 'prefixed-input prefixed-input--url' do
+          text_field :feed_url, placeholder: 'Feed URL'
+        end
+      end
+
+      div class: 'gra-form-group' do
+        submit class: 'gra-btn gra-width-100' do
+          span 'Add'
+          i '', 'data-feather': 'plus', class: 'icon-right'
+        end
+      end
     end
   end
 %>

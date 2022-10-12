@@ -6,19 +6,33 @@ module Web
 
         before :must_not_be_authenticated
 
+        expose :providing_new_password
+        expose :requesting_reset_email
         expose :new_account
-        expose :user
+        expose :token_invalid
 
         params do
-          required(:token).filled(:str?)
+          optional(:token).filled(:str?)
         end
 
         def call(params)
-          flash[:error] = 'Provided token is invalid' unless params.valid? && user.present?
+          flash[:error] = 'Provided token is invalid' if token_invalid
         end
 
         def new_account
           token.present? && !user&.active?
+        end
+
+        def providing_new_password
+          user.present?
+        end
+
+        def requesting_reset_email
+          token.blank?
+        end
+
+        def token_invalid
+          token.present? && user.blank?
         end
 
         private

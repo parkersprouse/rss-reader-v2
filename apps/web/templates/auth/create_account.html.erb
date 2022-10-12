@@ -1,15 +1,47 @@
-<div class='auth_form_container'>
-  <%= flash[:error] %>
-  <%=
-    form_for :auth, routes.process_create_account_path do
-      div do
-        label 'E-mail', for: :email
-        email_field :email
-      end
+<div class='center-container gra-flex gra-flex-jc-c gra-height-100'>
+  <div class='gra-card'>
+    <div class='gra-card-content'>
+      <div class='gra-card-body'>
+        <%=
+          form_for :auth, routes.process_create_account_path do
+            fieldset do
+              legend do
+                h5 'Create Account', class: 'gra-heading'
+              end
 
-      div do
-        submit 'Create Account'
-      end
-    end
-  %>
+              if flash[:error].present?
+                span class: 'gra-block gra-mg-bottom-m gra-alert red', role: 'alert' do
+                  flash[:error]
+                end
+              end
+
+              if flash[:success].present?
+                span class: 'gra-block gra-mg-bottom-m gra-alert green', role: 'alert' do
+                  flash[:success]
+                end
+              end
+
+              div class: 'gra-form-group' do
+                label 'E-mail', for: :email
+                span class: 'prefixed-input prefixed-input--email' do
+                  email_field :email
+                end
+              end
+
+              div class: 'gra-form-group gra-center-text' do
+                submit class: 'gra-btn gra-width-100' do
+                  span 'Create Account'
+                  i '', 'data-feather': 'user-plus', class: 'icon-right'
+                end
+              end
+
+              div class: 'gra-form-group auth-form-links' do
+                a 'Sign In', href: routes.sign_in_path
+              end
+            end
+          end
+        %>
+      </div>
+    </div>
+  </div>
 </div>

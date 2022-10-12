@@ -3,13 +3,17 @@
   <head>
     <title>RSS Reader</title>
     <%= favicon %>
-    <%= stylesheet 'https://cdn.jsdelivr.net/npm/sanitize.css@13.0.0/sanitize.min.css' %>
-    <%= stylesheet 'https://cdn.jsdelivr.net/npm/sanitize.css@13.0.0/typography.min.css' %>
-    <%= stylesheet 'https://cdn.jsdelivr.net/npm/sanitize.css@13.0.0/forms.min.css' %>
+    <link href='https://fonts.googleapis.com' rel='preconnect'>
+    <link href='https://fonts.gstatic.com' rel='preconnect' crossorigin>
     <%= stylesheet 'styles' %>
     <%= javascript 'https://cdn.jsdelivr.net/npm/@hotwired/turbo@7.2.0/dist/turbo.es2017-umd.min.js' %>
+    <%= javascript 'https://cdn.jsdelivr.net/npm/feather-icons@4.29.0/dist/feather.min.js' %>
+    <%= javascript 'scripts', defer: true %>
   </head>
   <body>
     <%= yield %>
+    <script>
+      feather.replace();
+    </script>
   </body>
 </html>

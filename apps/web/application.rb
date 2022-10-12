@@ -23,6 +23,7 @@ module Web
       #
       load_paths << [
         'controllers',
+        'helpers',
         'views'
       ]
 
@@ -233,11 +234,11 @@ module Web
         frame-ancestors 'self';
         base-uri 'self';
         default-src 'none';
-        script-src 'self' cdn.jsdelivr.net;
+        script-src 'self' 'unsafe-inline' cdn.jsdelivr.net;
         connect-src 'self';
         img-src 'self' https: data:;
         style-src 'self' 'unsafe-inline' https:;
-        font-src 'self';
+        font-src 'self' fonts.gstatic.com fonts.googleapis.com;
         object-src 'none';
         plugin-types application/pdf;
         child-src 'self';
@@ -265,6 +266,7 @@ module Web
       view.prepare do
         include Hanami::Helpers
         include Web::Assets::Helpers
+        include Web::Helpers::FancyLink
       end
     end
 
@@ -272,14 +274,14 @@ module Web
     # DEVELOPMENT
     #
     configure :development do
-
+      handle_exceptions true
     end
 
     ##
     # TEST
     #
     configure :test do
-
+      handle_exceptions true
     end
 
     ##

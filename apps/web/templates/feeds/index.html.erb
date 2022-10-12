@@ -1,34 +1,47 @@
-<div>
-  Total Feeds: <%= parsed_feeds.count %>
-</div>
+<div class='main-container'>
+  <%= render partial: 'create_form' %>
 
-<%= render partial: 'create_form' %>
-
-
-<div style='display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; align-content: center;'>
-  <% parsed_feeds.each do |feed| %>
-    <div style='flex: 1; min-width: 20%; padding: 1rem; border: 1px solid black; margin-bottom: 1rem;'>
-      <div>
-        <%= feed[:title] %>
-      </div>
-
-      <hr />
-
-      <div>
-        <%= render partial: 'update_form', locals: { feed: feed } %>
-      </div>
-
-      <hr />
-
-      <div style='max-height: 300px; overflow: auto;'>
-        <ul>
-        <% feed[:entries].each do |entry| %>
-          <li>
-            <a href='<%= entry.link %>' target='_blank'><%= entry.title %></a>
-          </li>
+  <% if parsed_feeds.present? %>
+    <div class='container'>
+      <div class='row feeds-list'>
+        <% parsed_feeds.each do |feed| %>
+          <div class='col col-33'>
+            <div class='gra-card'>
+              <div class='gra-card-content'>
+                <h5 class='gra-card-title'>
+                  <%= feed[:title] %>
+                  <i data-feather='edit'></i>
+                  <%=
+                    fancy_link(routes.feed_delete_path(id: feed[:id]), method: :delete, title: 'Delete Feed') do
+                      i '', 'data-feather': 'x-circle'
+                    end
+                  %>
+                </h5>
+                <div class='gra-card-body'>
+                  <% if feed[:error].present? %>
+                    <%= feed[:error] %>
+                  <% end %>
+                  <% if feed[:entries].present? %>
+                    <ul class='gra-list'>
+                      <% feed[:entries].each do |entry| %>
+                        <li class='gra-list-item'>
+                          <a href='<%= entry.link %>' target='_blank'>
+                            <%= entry.title %>
+                          </a>
+                        </li>
+                      <% end %>
+                    </ul>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
         <% end %>
-        </ul>
       </div>
     </div>
   <% end %>
 </div>
+
+<!--
+<%# <%= render partial: 'update_form', locals: { feed: feed } %>
+-->
