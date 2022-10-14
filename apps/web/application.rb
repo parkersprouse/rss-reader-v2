@@ -3,6 +3,7 @@ require 'hanami/assets'
 require 'rack/protection'
 require './apps/web/mixins/action_scaffold'
 require './apps/web/mixins/check_authentication'
+require './config/terser_compressor'
 
 module Web
   class Application < Hanami::Application
@@ -134,7 +135,7 @@ module Web
         # See: https://guides.hanamirb.org/assets/compressors
         #
         # In order to skip JavaScript compression comment the following line
-        javascript_compressor :uglifier
+        javascript_compressor TerserCompressor.new
 
         # Stylesheet compressor
         #
@@ -234,7 +235,7 @@ module Web
         frame-ancestors 'self';
         base-uri 'self';
         default-src 'none';
-        script-src 'self' 'unsafe-inline' cdn.jsdelivr.net;
+        script-src 'self' 'unsafe-inline' cdn.jsdelivr.net unpkg.com;
         connect-src 'self';
         img-src 'self' https: data:;
         style-src 'self' 'unsafe-inline' https:;

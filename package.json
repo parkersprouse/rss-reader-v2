@@ -1,0 +1,10 @@
+{
+  "name": "rss-reader-v2",
+  "version": "1.0.0",
+  "description": "RSS Reader",
+  "license": "ISC",
+  "engines": {
+    "node": "~16.17.0",
+    "pnpm": "~7.13.4"
+  }
+}

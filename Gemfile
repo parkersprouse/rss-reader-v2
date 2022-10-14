@@ -19,7 +19,7 @@ group :development do
   gem 'rubocop-airbnb'
   gem 'sassc'
   gem 'shotgun', platforms: :ruby
-  gem 'uglifier'
+  gem 'terser'
   gem 'yard'
 end
 

@@ -11,11 +11,7 @@
                 <h5 class='gra-card-title'>
                   <%= feed[:title] %>
                   <i data-feather='edit'></i>
-                  <%=
-                    fancy_link(routes.feed_delete_path(id: feed[:id]), method: :delete, title: 'Delete Feed') do
-                      i '', 'data-feather': 'x-circle'
-                    end
-                  %>
+                  <i data-feather='x-circle' data-controller='delete' data-action='click->delete#action'></i>
                 </h5>
                 <div class='gra-card-body'>
                   <% if feed[:error].present? %>
