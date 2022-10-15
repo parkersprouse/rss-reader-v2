@@ -1,4 +1,6 @@
-class DeleteController extends window.Stimulus.Controller {
+import { Controller } from '@hotwired/stimulus';
+
+class DeleteController extends Controller {
   // static targets = ['id'];
   action() {
     console.log(this.element);
