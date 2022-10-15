@@ -1,4 +1,1 @@
-import DeleteController from './delete_controller.js';
-
-window.StimulusApplication = Stimulus.Application.start();
-StimulusApplication.register('delete', DeleteController);
+!function(){"use strict";class t extends window.Stimulus.Controller{action(){console.log("this work?"),console.log(this.element)}}window.StimulusApplication=Stimulus.Application.start(),StimulusApplication.register("delete",t)}();

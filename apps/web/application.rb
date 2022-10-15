@@ -135,7 +135,7 @@ module Web
         # See: https://guides.hanamirb.org/assets/compressors
         #
         # In order to skip JavaScript compression comment the following line
-        javascript_compressor TerserCompressor.new
+        # javascript_compressor TerserCompressor.new
 
         # Stylesheet compressor
         #
