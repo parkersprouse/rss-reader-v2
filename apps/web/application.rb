@@ -3,7 +3,6 @@ require 'hanami/assets'
 require 'rack/protection'
 require './apps/web/mixins/action_scaffold'
 require './apps/web/mixins/check_authentication'
-require './config/terser_compressor'
 
 module Web
   class Application < Hanami::Application
@@ -24,7 +23,6 @@ module Web
       #
       load_paths << [
         'controllers',
-        'helpers',
         'views'
       ]
 
@@ -135,7 +133,7 @@ module Web
         # See: https://guides.hanamirb.org/assets/compressors
         #
         # In order to skip JavaScript compression comment the following line
-        # javascript_compressor TerserCompressor.new
+        # javascript_compressor :builtin
 
         # Stylesheet compressor
         #
@@ -148,12 +146,12 @@ module Web
         # See: https://guides.hanamirb.org/assets/compressors
         #
         # In order to skip stylesheet compression comment the following line
-        stylesheet_compressor :sass
+        # stylesheet_compressor :builtin
 
         # Specify sources for assets
         #
         sources << [
-          'assets'
+          'assets/dist'
         ]
       end
 
@@ -267,7 +265,6 @@ module Web
       view.prepare do
         include Hanami::Helpers
         include Web::Assets::Helpers
-        include Web::Helpers::FancyLink
       end
     end
 

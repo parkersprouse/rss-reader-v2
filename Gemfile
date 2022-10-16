@@ -9,17 +9,13 @@ gem 'pg'
 gem 'rack-protection'
 gem 'rake'
 gem 'rss'
-gem 'warden'
 
 group :development do
-  gem 'babel-transpiler'
   gem 'hanami-webconsole'
   gem 'reek'
   gem 'rubocop'
   gem 'rubocop-airbnb'
-  gem 'sassc'
   gem 'shotgun', platforms: :ruby
-  gem 'terser'
   gem 'yard'
 end
 

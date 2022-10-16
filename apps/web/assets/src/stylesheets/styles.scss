@@ -1,8 +1,8 @@
+@use 'sanitize.css/sanitize';
+@use 'sanitize.css/typography';
+@use 'sanitize.css/forms';
+@use 'gralig/dist/gralig.min';
 @import url('https://fonts.googleapis.com/css2?family=Hubballi&family=Oxanium:wght@200;300;400;500;600;700;800&display=swap');
-@import url('https://cdn.jsdelivr.net/npm/sanitize.css@13.0.0/sanitize.min.css');
-@import url('https://cdn.jsdelivr.net/npm/sanitize.css@13.0.0/typography.min.css');
-@import url('https://cdn.jsdelivr.net/npm/sanitize.css@13.0.0/forms.min.css');
-@import url('https://cdn.jsdelivr.net/npm/gralig@1.0.0/dist/gralig.min.css');
 
 * {
   font-family: 'Hubballi', sans-serif !important;
