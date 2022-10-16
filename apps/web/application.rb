@@ -58,7 +58,7 @@ module Web
       # This should only be configured if app listens to non-standard ports
       #
       # port 443
-      port 2300 if Hanami.env?(:development)
+      port Hanami.env?(:development) ? 2300 : ENV.fetch('PORT')
 
       # Enable cookies
       # Argument: boolean to toggle the feature
