@@ -1,0 +1,5 @@
+[phases.build]
+cmds = ['pnpm run build', 'bundle exec hanami assets precompile']
+
+[start]
+cmd = 'bundle exec hanami server --port $PORT'
