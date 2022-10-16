@@ -13,9 +13,9 @@
     "js:build": "rollup --config rollup.config.mjs",
     "js:watch": "rollup --watch --config rollup.config.mjs",
     "css:build": "$npm_execpath run css:transform && $npm_execpath run css:minify",
-    "css:watch": "sass --load-path=node_modules --watch apps/web/assets/src/stylesheets/styles.scss apps/web/assets/dist/stylesheets/styles.css",
-    "css:transform": "sass --load-path=node_modules apps/web/assets/src/stylesheets/styles.scss apps/web/assets/dist/stylesheets/styles.css",
-    "css:minify": "lightningcss --minify --nesting --targets '>= 0.25%' --sourcemap apps/web/assets/dist/stylesheets/styles.css -o apps/web/assets/dist/stylesheets/styles.css"
+    "css:watch": "sass --no-source-map --load-path=node_modules --watch apps/web/assets_src/stylesheets/styles.scss apps/web/assets/stylesheets/styles.css",
+    "css:transform": "sass --no-source-map --load-path=node_modules apps/web/assets_src/stylesheets/styles.scss apps/web/assets/stylesheets/styles.css",
+    "css:minify": "lightningcss --minify --nesting --targets '>= 0.25%' apps/web/assets/stylesheets/styles.css -o apps/web/assets/stylesheets/styles.css"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.1.0",

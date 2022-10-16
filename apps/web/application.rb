@@ -151,7 +151,7 @@ module Web
         # Specify sources for assets
         #
         sources << [
-          'assets/dist'
+          'assets'
         ]
       end
 

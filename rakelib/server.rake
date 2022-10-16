@@ -4,7 +4,9 @@ require 'dotenv/load' unless production
 
 namespace :server do
   task :build do
+    return unless production
     system('pnpm run build') || system('npm run build')
+    system('bundle exec hanami assets precompile')
   end
 
   task :start do

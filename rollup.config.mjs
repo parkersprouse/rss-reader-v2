@@ -3,9 +3,9 @@ import commonjs from '@rollup/plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
 
 export default {
-  input: 'apps/web/assets/src/javascripts/index.js',
+  input: 'apps/web/assets_src/javascripts/index.js',
   output: {
-    file: 'apps/web/assets/dist/javascripts/scripts.js',
+    file: 'apps/web/assets/javascripts/scripts.js',
     format: 'iife',
   },
   plugins: [nodeResolve(), commonjs(), terser()],
