@@ -11,8 +11,7 @@ module Mailers
     end
 
     def pw_reset_url
-      URI::HTTP.build(
-        scheme: scheme,
+      builder_class.build(
         host: host,
         path: reset_route,
         query: "token=#{user.pw_reset_token}")
@@ -24,8 +23,9 @@ module Mailers
       params.env['HTTP_HOST']
     end
 
-    def scheme
-      params.env['rack.url_scheme'] || (Hanami.env?(:production) ? 'https' : 'http')
+    def builder_class
+      return URI::HTTPS if params.env['rack.url_scheme'] == 'https' || Hanami.env?(:production)
+      URI::HTTP
     end
   end
 end
