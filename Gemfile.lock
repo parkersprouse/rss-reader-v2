@@ -68,10 +68,10 @@ GEM
       dry-logic (~> 0.4, >= 0.4.0)
       dry-types (~> 0.11.0)
     erubi (1.11.0)
-    faraday (2.5.2)
+    faraday (2.6.0)
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
-    faraday-net_http (3.0.0)
+    faraday-net_http (3.0.1)
     hanami (1.3.5)
       bundler (>= 1.6, < 3)
       concurrent-ruby (~> 1.0)
@@ -140,20 +140,23 @@ GEM
     mini_mime (1.1.2)
     mini_portile2 (2.8.0)
     minitest (5.16.3)
+    nio4r (2.5.8)
     nokogiri (1.13.8)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     parallel (1.22.1)
     parser (3.1.2.1)
       ast (~> 2.4.1)
-    pg (1.4.3)
+    pg (1.4.4)
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
     public_suffix (5.0.0)
+    puma (6.0.0)
+      nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.4)
-    rack-protection (2.2.2)
+    rack-protection (3.0.2)
       rack
     rack-test (2.0.2)
       rack (>= 1.3)
@@ -163,7 +166,7 @@ GEM
       kwalify (~> 0.7.0)
       parser (~> 3.1.0)
       rainbow (>= 2.0, < 4.0)
-    regexp_parser (2.5.0)
+    regexp_parser (2.6.0)
     rexml (3.2.5)
     rom (3.3.3)
       concurrent-ruby (~> 1.0)
@@ -253,12 +256,14 @@ DEPENDENCIES
   bcrypt
   capybara
   dotenv (~> 2.4)
+  dry-core (= 0.8.1)
   faraday
   hanami (~> 1.3)
   hanami-model (~> 1.3)
   hanami-webconsole
   pg
   pry
+  puma
   rack-protection
   rake
   reek

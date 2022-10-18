@@ -55,9 +55,10 @@ module Web
         def request_reset_email
           if user.present?
             User.transaction do
-              token = SecureRandom.hex(50)
-              user.update(pw_reset_token: token, pw_reset_token_sent_at: DateTime.now)
-              Mailers::ResetPassword.deliver(user: user, token: token, reset_route: routes.url(:reset_password))
+              updated_user = user.update(
+                pw_reset_token: SecureRandom.hex(50), pw_reset_token_sent_at: DateTime.now)
+              Mailers::ResetPassword.deliver(
+                user: updated_user, params: params, reset_route: routes.path(:reset_password))
             end
           end
           flash[:success] = 'If there is an account associated with the provided e-mail address, '\

@@ -1,5 +1,5 @@
 [phases.build]
-cmds = ['bundle exec rake server:build']
+cmds = ['pnpm run build', 'bundle exec hanami assets precompile']
 
 [start]
-cmd = 'bundle exec rake server:start'
+cmd = 'rackup config.ru -p $PORT'

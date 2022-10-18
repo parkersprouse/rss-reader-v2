@@ -22,7 +22,7 @@ module Web
 
         def call(params)
           create_account
-          redirect_to routes.create_account_path
+          redirect_to routes.sign_in_path
         rescue Hanami::Model::Error, Hanami::Mailer::Error
           raise AuthFormError, 'There was a problem creating your account'
         end
@@ -34,7 +34,8 @@ module Web
             user = User.create(email: email,
               pw_reset_token: SecureRandom.hex(50),
               pw_reset_token_sent_at: DateTime.now)
-            Mailers::ActivateAccount.deliver(user: user, reset_route: routes.url(:reset_password))
+            Mailers::ActivateAccount.deliver(
+              user: user, params: params, reset_route: routes.path(:reset_password))
           end
           flash[:success] = 'Check your e-mail to finish account setup'
         end

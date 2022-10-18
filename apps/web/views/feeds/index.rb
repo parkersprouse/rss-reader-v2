@@ -1,5 +1,5 @@
-require 'rss'
 require 'faraday'
+require 'rss'
 
 module Web
   module Views
