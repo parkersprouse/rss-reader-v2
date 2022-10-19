@@ -1,3 +1,5 @@
+require 'dotenv/load' unless ENV['HANAMI_ENV'] == 'production'
+
 desc 'Prepares the dev and test app environments'
 task :init do
   puts "\n"

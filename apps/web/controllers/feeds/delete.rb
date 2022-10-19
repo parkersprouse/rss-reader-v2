@@ -1,7 +1,7 @@
 module Web
   module Controllers
     module Feeds
-      class Create
+      class Delete
         include Web::Action
 
         handle_exception FeedFormError => :handle_error

@@ -13,6 +13,7 @@ module Web
 
         before :must_not_be_authenticated
         before { raise AuthFormError, 'Please make sure the form is filled out' unless params.valid? }
+        before { raise AuthFormError, 'E-mail address is not available' if existing_user? }
 
         params do
           required(:auth).schema do
@@ -42,6 +43,10 @@ module Web
 
         def email
           params.get(:auth, :email)
+        end
+
+        def existing_user?
+          @existing_user ||= User.find_by(email: email).present?
         end
 
         def handle_error(exception)
