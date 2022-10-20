@@ -12,7 +12,7 @@ module Web
         def call(params)
           feed.delete
           flash[:success] = 'Feed successfully deleted'
-          redirect_to routes.feed_index_path
+          redirect_to routes.feed_index_path, status: 200
         rescue Hanami::Model::Error
           raise FeedFormError, 'There was a problem deleting the feed'
         end
@@ -25,7 +25,7 @@ module Web
 
         def handle_error(exception)
           flash[:error] = exception.message || 'There was a problem deleting the feed'
-          redirect_to routes.feed_index_path
+          redirect_to routes.feed_index_path, status: 200
         end
       end
     end

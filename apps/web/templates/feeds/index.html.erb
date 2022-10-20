@@ -10,8 +10,12 @@
               <div class='gra-card-content'>
                 <h5 class='gra-card-title'>
                   <%= feed[:title] %>
-                  <i data-feather='edit'></i>
-                  <i data-feather='x-circle' data-controller='delete' data-action='click->delete#action'></i>
+                  <span tooltip='Edit' data-controller='edit' data-action='click->edit#action'>
+                    <i data-feather='edit'></i>
+                  </span>
+                  <span tooltip='Remove' data-controller='delete' data-action='click->delete#action' data-id='<%= feed[:id] %>'>
+                    <i data-feather='x-circle'></i>
+                  </span>
                 </h5>
                 <div class='gra-card-body'>
                   <% if feed[:error].present? %>

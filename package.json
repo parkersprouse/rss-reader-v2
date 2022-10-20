@@ -13,16 +13,17 @@
     "js:build": "rollup --config rollup.config.mjs",
     "js:watch": "rollup --watch --config rollup.config.mjs",
     "css:build": "$npm_execpath run css:transform && $npm_execpath run css:minify",
-    "css:watch": "sass --no-source-map --load-path=node_modules --watch apps/web/assets/src/stylesheets/input.scss apps/web/assets/dist/stylesheets/output.css",
-    "css:transform": "sass --no-source-map --load-path=node_modules apps/web/assets/src/stylesheets/input.scss apps/web/assets/dist/stylesheets/output.css",
-    "css:minify": "lightningcss --minify --nesting --targets '>= 0.25%' apps/web/assets/dist/stylesheets/output.css -o apps/web/assets/dist/stylesheets/output.css"
+    "css:watch": "sass --no-source-map --load-path=node_modules --watch apps/web/assets/src/stylesheets/styles.scss apps/web/assets/dist/stylesheets/styles.css",
+    "css:transform": "sass --no-source-map --load-path=node_modules apps/web/assets/src/stylesheets/styles.scss apps/web/assets/dist/stylesheets/styles.css",
+    "css:minify": "lightningcss --minify --nesting --targets '>= 0.25%' apps/web/assets/dist/stylesheets/styles.css -o apps/web/assets/dist/stylesheets/styles.css"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.1.0",
     "@hotwired/turbo": "^7.2.2",
     "feather-icons": "^4.29.0",
     "gralig": "^1.0.0",
-    "sanitize.css": "^13.0.0"
+    "sanitize.css": "^13.0.0",
+    "sortablejs": "^1.15.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^23.0.0",

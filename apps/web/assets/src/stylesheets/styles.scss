@@ -2,6 +2,9 @@
 @use 'sanitize.css/typography';
 @use 'sanitize.css/forms';
 @use 'gralig/dist/gralig.min';
+@use './vendor/js-snackbar';
+@use './tooltip';
+
 @import url('https://fonts.googleapis.com/css2?family=Hubballi&family=Oxanium:wght@200;300;400;500;600;700;800&display=swap');
 
 * {
@@ -184,6 +187,8 @@ textarea {
       max-height: 400px;
 
       .gra-card-title {
+        cursor: move;
+
         .feather {
           cursor: pointer;
           display: none;
