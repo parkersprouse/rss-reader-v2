@@ -8,18 +8,24 @@
           <div class='col col-33'>
             <div class='gra-card'>
               <div class='gra-card-content'>
+
+                <!--
+                <%# <%= render partial: 'update_form', locals: { feed: feed } %> %>
+                -->
+
                 <h5 class='gra-card-title'>
                   <%= feed[:title] %>
-                  <span tooltip='Edit' data-controller='edit' data-action='click->edit#action'>
+                  <span tooltip='edit' data-controller='edit' data-action='click->edit#action'>
                     <i data-feather='edit'></i>
                   </span>
-                  <span tooltip='Remove' data-controller='delete' data-action='click->delete#action' data-id='<%= feed[:id] %>'>
+                  <span tooltip='delete' data-controller='delete' data-action='click->delete#action' data-id='<%= feed[:id] %>'>
                     <i data-feather='x-circle'></i>
                   </span>
+                  <%= form_for :feeds, routes.feed_delete_path(feed[:id]), method: :delete, style: 'display: none;', id: feed[:id] do; end; %>
                 </h5>
                 <div class='gra-card-body'>
-                  <% if feed[:error].present? %>
-                    <%= feed[:error] %>
+                  <% if feed[:error_alert].present? %>
+                    <%= feed[:error_alert] %>
                   <% end %>
                   <% if feed[:entries].present? %>
                     <ul class='gra-list'>
@@ -41,7 +47,3 @@
     </div>
   <% end %>
 </div>
-
-<!--
-<%# <%= render partial: 'update_form', locals: { feed: feed } %>
--->

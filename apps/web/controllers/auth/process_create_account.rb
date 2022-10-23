@@ -38,7 +38,7 @@ module Web
             Mailers::ActivateAccount.deliver(
               user: user, params: params, reset_route: routes.path(:reset_password))
           end
-          flash[:success] = 'Check your e-mail to finish account setup'
+          flash[:success_alert] = 'Check your e-mail to finish account setup'
         end
 
         def email
@@ -50,7 +50,7 @@ module Web
         end
 
         def handle_error(exception)
-          flash[:error] = exception.message || 'There was a problem creating your account'
+          flash[:error_alert] = exception.message || 'There was a problem creating your account'
           redirect_to routes.create_account_path
         end
       end

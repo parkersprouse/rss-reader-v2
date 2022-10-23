@@ -16,7 +16,7 @@ module Web
         end
 
         def call(params)
-          flash[:error] = 'Provided token is invalid' if token_invalid
+          flash[:error_alert] = 'Provided token is invalid' if token_invalid
         end
 
         def new_account

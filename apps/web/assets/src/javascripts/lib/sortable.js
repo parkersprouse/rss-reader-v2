@@ -1,8 +1,11 @@
 import Sortable from 'sortablejs/modular/sortable.core.esm.js';
 
-function init() {
+export default function() {
+  const feed_list = document.querySelector('.feeds-list');
+  if (!feed_list) return;
+
   const sortable = Sortable.create(
-    document.querySelector('.feeds-list'),
+    feed_list,
     {
       animation: 150,
       draggable: '.col',
@@ -10,6 +13,4 @@ function init() {
       handle: '.gra-card-title',
     },
   );
-}
-
-export default init;
+};

@@ -47,7 +47,7 @@ module Web
         end
 
         def handle_error(exception)
-          flash[:error] = exception.message || 'There was a problem signing you in'
+          flash[:error_alert] = exception.message || 'There was a problem signing you in'
           redirect_to routes.sign_in_path
         end
       end

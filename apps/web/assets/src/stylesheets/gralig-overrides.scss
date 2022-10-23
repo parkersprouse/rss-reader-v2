@@ -1,0 +1,26 @@
+.gra-alert {
+  max-width: 100%;
+  min-width: 100%;
+  width: 100%;
+  height: initial;
+  line-height: initial;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 2rem;
+}
+
+.gra-form-group:last-child {
+  margin-bottom: 0;
+}
+
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="text"],
+input[type="url"],
+select,
+textarea {
+  font-size: 1.6rem;
+}

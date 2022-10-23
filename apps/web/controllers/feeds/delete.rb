@@ -1,8 +1,11 @@
+require './apps/web/mixins/csrf_overrides'
+
 module Web
   module Controllers
     module Feeds
       class Delete
         include Web::Action
+        include CSRFOverrides
 
         handle_exception FeedFormError => :handle_error
 
@@ -11,8 +14,8 @@ module Web
 
         def call(params)
           feed.delete
-          flash[:success] = 'Feed successfully deleted'
-          redirect_to routes.feed_index_path, status: 200
+          flash[:success_toast] = 'Feed successfully deleted'
+          redirect_to routes.feed_index_path
         rescue Hanami::Model::Error
           raise FeedFormError, 'There was a problem deleting the feed'
         end
@@ -24,8 +27,8 @@ module Web
         end
 
         def handle_error(exception)
-          flash[:error] = exception.message || 'There was a problem deleting the feed'
-          redirect_to routes.feed_index_path, status: 200
+          flash[:error_toast] = exception.message || 'There was a problem deleting the feed'
+          redirect_to routes.feed_index_path
         end
       end
     end

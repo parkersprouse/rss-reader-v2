@@ -3,6 +3,7 @@ require 'hanami/assets'
 require 'rack/protection'
 require './apps/web/mixins/action_scaffold'
 require './apps/web/mixins/check_authentication'
+require './apps/web/mixins/turbo_redirect'
 
 module Web
   class Application < Hanami::Application
@@ -16,11 +17,13 @@ module Web
 
       routes 'config/routes'
 
+      cookies true
+
       sessions :cookie,
         httponly: true,
         key: 'session',
         secret: ENV.fetch('WEB_SESSIONS_SECRET'),
-        secure: false #Hanami.env?(:production)
+        secure: Hanami.env?(:production)
 
       middleware.use Rack::Protection
 
@@ -62,8 +65,9 @@ module Web
       }
 
       controller.prepare do
-        include ActionScaffold
         include CheckAuthentication
+        include ActionScaffold
+        include TurboRedirectHelper
       end
 
       view.prepare do

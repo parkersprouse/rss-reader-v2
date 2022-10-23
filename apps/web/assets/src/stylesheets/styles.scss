@@ -2,8 +2,11 @@
 @use 'sanitize.css/typography';
 @use 'sanitize.css/forms';
 @use 'gralig/dist/gralig.min';
-@use './vendor/js-snackbar';
+@use './feather-overrides';
+@use './gralig-overrides';
+@use './navbar';
 @use './tooltip';
+@use './vendor/js-snackbar';
 
 @import url('https://fonts.googleapis.com/css2?family=Hubballi&family=Oxanium:wght@200;300;400;500;600;700;800&display=swap');
 
@@ -18,7 +21,7 @@ html, body {
 .main-container {
   margin: auto;
   max-width: 50%;
-  padding-top: 5rem;
+  padding-top: 2rem;
 }
 
 .center-container {
@@ -56,36 +59,6 @@ fieldset {
   gap: 1rem;
 }
 
-.feather.link-separator {
-  width: 6px;
-  height: 6px;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  fill: currentColor;
-}
-
-.gra-alert {
-  max-width: 100%;
-  min-width: 100%;
-  width: 100%;
-  height: initial;
-  line-height: initial;
-}
-
-input[type="email"],
-input[type="number"],
-input[type="password"],
-input[type="search"],
-input[type="tel"],
-input[type="text"],
-input[type="url"],
-select,
-textarea {
-  font-size: 1.6rem;
-}
-
 .prefixed-input {
   position: relative;
 
@@ -119,23 +92,6 @@ textarea {
   &.prefixed-input--url::before {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-rss'%3E%3Cpath d='M4 11a9 9 0 0 1 9 9'%3E%3C/path%3E%3Cpath d='M4 4a16 16 0 0 1 16 16'%3E%3C/path%3E%3Ccircle cx='5' cy='19' r='1'%3E%3C/circle%3E%3C/svg%3E");
   }
-}
-
-.feather {
-  width: 12px;
-  height: 12px;
-
-  &.icon-left {
-    margin-right: 0.75rem;
-  }
-
-  &.icon-right {
-    margin-left: 0.75rem;
-  }
-}
-
-.gra-form-group:last-child {
-  margin-bottom: 0;
 }
 
 .row {

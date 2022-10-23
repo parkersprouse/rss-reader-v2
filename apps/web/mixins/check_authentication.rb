@@ -1,6 +1,13 @@
 # A mixin that can be included in an {Action} to check if the user triggering
 # this {Action} is authenticated, and finding who it is if so.
 module CheckAuthentication
+  def self.included(action)
+    action.class_eval do
+      expose :authenticated?
+      expose :current_user
+    end
+  end
+
   # @return [Boolean]
   #   Whether or not the user is currently authenticated.
   def authenticated?

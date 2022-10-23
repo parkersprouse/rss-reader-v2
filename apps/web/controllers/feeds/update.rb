@@ -19,7 +19,7 @@ module Web
 
         def call(params)
           feed.update(source: params.get(:feeds, :feed_url))
-          flash[:success] = 'Feed successfully updated'
+          flash[:success_toast] = 'Feed successfully updated'
           redirect_to routes.feed_index_path
         rescue Hanami::Model::Error
           raise FeedFormError, 'There was a problem updating the feed'
@@ -32,7 +32,7 @@ module Web
         private
 
         def handle_error(exception)
-          flash[:error] = exception.message || 'There was a problem updating the feed'
+          flash[:error_toast] = exception.message || 'There was a problem updating the feed'
           redirect_to routes.feed_index_path
         end
       end

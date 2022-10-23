@@ -61,15 +61,15 @@ module Web
                 user: updated_user, params: params, reset_route: routes.path(:reset_password))
             end
           end
-          flash[:success] = 'If there is an account associated with the provided e-mail address, '\
-                            'it should receive an e-mail shortly with instructions to continue'
+          flash[:success_alert] = 'If there is an account associated with the provided e-mail address, '\
+                                  'it should receive an e-mail shortly with instructions to continue'
           redirect_to routes.reset_password_path
         end
 
         def set_new_password
           pw_hash = BCrypt::Password.create(new_password)
           user.update(pw_hash: pw_hash, pw_reset_token: nil, pw_reset_token_sent_at: nil)
-          flash[:success] = 'Password successfully updated'
+          flash[:success_alert] = 'Password successfully updated'
           redirect_to routes.sign_in_path
         end
 
@@ -84,7 +84,7 @@ module Web
         end
 
         def handle_error(exception)
-          flash[:error] = exception.message || 'There was a problem updating your password'
+          flash[:error_alert] = exception.message || 'There was a problem updating your password'
           redirect_to "#{routes.reset_password_path}#{token.present? ? '?token=' + token : ''}"
         end
       end

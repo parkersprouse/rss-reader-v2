@@ -1,0 +1,22 @@
+.navbar {
+  margin-left: 4rem;
+  margin-right: 4rem;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+  text-align: right;
+
+  a, a:hover {
+    text-decoration: none !important;
+  }
+
+  > span {
+    &:not(:last-child) {
+      margin-right: 1rem;
+    }
+
+    .feather {
+      height: 20px;
+      width: 20px;
+    }
+  }
+}

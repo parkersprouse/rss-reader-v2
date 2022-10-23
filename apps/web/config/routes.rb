@@ -1,10 +1,12 @@
 # @reference https://guides.hanamirb.org/routing/overview
 
-root to: 'home#index'
+root to: 'home#index', as: :root
 
 namespace 'auth' do
   get '/sign_in', to: 'auth#sign_in', as: :sign_in
   post '/sign_in', to: 'auth#process_sign_in', as: :process_sign_in
+
+  get '/sign_out', to: 'auth#sign_out', as: :sign_out
 
   get '/create_account', to: 'auth#create_account', as: :create_account
   post '/create_account', to: 'auth#process_create_account', as: :process_create_account

@@ -17,7 +17,7 @@ module Web
 
         def call(params)
           Feed.create(user_id: current_user.id, source: params.get(:feeds, :feed_url))
-          flash[:success] = 'Feed successfully created'
+          flash[:success_toast] = 'Feed successfully created'
           redirect_to routes.feed_index_path
         rescue Hanami::Model::Error
           raise FeedFormError, 'There was a problem adding the feed'
@@ -26,7 +26,7 @@ module Web
         private
 
         def handle_error(exception)
-          flash[:error] = exception.message || 'There was a problem adding the feed'
+          flash[:error_alert] = exception.message || 'There was a problem adding the feed'
           redirect_to routes.feed_index_path
         end
       end
