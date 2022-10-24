@@ -3389,6 +3389,24 @@ input[type=search] {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
   padding-left: 2rem;
+  padding-right: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  font-size: 1.5rem;
+}
+.gra-alert .alert-icon {
+  flex-grow: 0;
+  flex-shrink: 1;
+}
+.gra-alert .alert-content {
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+.gra-alert.green {
+  color: black;
 }
 
 .gra-form-group:last-child {
@@ -3412,7 +3430,7 @@ textarea {
   margin-right: 4rem;
   padding-bottom: 2rem;
   padding-top: 2rem;
-  text-align: right;
+  text-align: center;
 }
 .navbar a, .navbar a:hover {
   text-decoration: none !important;
@@ -3791,6 +3809,20 @@ fieldset > legend {
   height: 100%;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+}
+
+.edit-form-container {
+  padding: 1.6rem;
+}
+.edit-form-container .edit-feed-form .gra-form-actions {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.edit-form-container .edit-feed-form .gra-form-actions .gra-btn {
+  width: 50%;
 }
 
 #feeds-form {

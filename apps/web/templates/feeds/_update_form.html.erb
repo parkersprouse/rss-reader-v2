@@ -1,12 +1,15 @@
-<%=
-  form_for :feeds, routes.feed_update_path(feed[:id]), method: :patch do
-    div do
-      label 'Feed URL', for: :feed_url
-      text_field :feed_url, value: feed[:source]
+<%= form_for :feeds, routes.feed_update_path(feed[:id]), method: :patch do
+  div class: 'edit-feed-form' do
+    div class: 'gra-form-group' do
+      span class: 'prefixed-input prefixed-input--url' do
+        text_field :feed_url, placeholder: 'Feed URL', value: feed[:source]
+      end
     end
 
-    div do
-      submit 'Update'
+    div class: 'gra-form-actions' do
+      submit 'Update', class: 'gra-btn'
+      a 'Back', class: 'gra-btn gra-btn-outline', 'data-controller': 'edit',
+        'data-action': 'click->edit#showPanel', 'data-id': feed[:id]
     end
   end
-%>
+end %>

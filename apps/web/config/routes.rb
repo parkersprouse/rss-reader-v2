@@ -21,3 +21,5 @@ namespace 'feeds' do
   patch '/:id', to: 'feeds#update', as: :feed_update
   delete '/:id', to: 'feeds#delete', as: :feed_delete
 end
+get '/settings', to: 'settings#show'
+patch '/settings', to: 'settings#update'

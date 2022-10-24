@@ -10,14 +10,24 @@
               end
 
               if flash[:error_alert].present?
-                span class: 'gra-block gra-mg-bottom-m gra-alert red', role: 'alert' do
-                  flash[:error_alert]
+                div class: 'gra-mg-bottom-m gra-alert red', role: 'alert' do
+                  div class: 'alert-icon' do
+                    i '', 'data-feather': 'x-circle'
+                  end
+                  div class: 'alert-content' do
+                    flash[:error_alert]
+                  end
                 end
               end
 
               if flash[:success_alert].present?
-                span class: 'gra-block gra-mg-bottom-m gra-alert green', role: 'alert' do
-                  flash[:success_alert]
+                div class: 'gra-mg-bottom-m gra-alert green', role: 'alert' do
+                  div class: 'alert-icon' do
+                    i '', 'data-feather': 'check-circle'
+                  end
+                  div class: 'alert-content' do
+                    flash[:success_alert]
+                  end
                 end
               end
 

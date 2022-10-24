@@ -7,6 +7,27 @@
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
   padding-left: 2rem;
+  padding-right: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  font-size: 1.5rem;
+
+  .alert-icon {
+    flex-grow: 0;
+    flex-shrink: 1;
+  }
+
+  .alert-content {
+    flex-grow: 1;
+    flex-shrink: 0;
+  }
+
+  &.green {
+    color: black;
+  }
 }
 
 .gra-form-group:last-child {

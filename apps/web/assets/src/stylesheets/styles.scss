@@ -128,6 +128,24 @@ fieldset {
   }
 }
 
+.edit-form-container {
+  padding: 1.6rem;
+
+  .edit-feed-form {
+    .gra-form-actions {
+      display: flex;
+      align-content: center;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+
+      .gra-btn {
+        width: 50%;
+      }
+    }
+  }
+}
+
 #feeds-form {
   margin-bottom: 2rem;
 }
