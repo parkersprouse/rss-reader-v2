@@ -11,8 +11,6 @@ specifiers:
   feather-icons: ^4.29.0
   gralig: ^1.0.0
   lightningcss-cli: ^1.17.1
-  "plugin-json\n": |
-    link:@rollup/plugin-json
   pnpm: ^7.18.2
   rollup: ^3.7.5
   sanitize.css: ^13.0.0
@@ -34,8 +32,6 @@ devDependencies:
   '@rollup/plugin-replace': 5.0.2_rollup@3.7.5
   '@rollup/plugin-terser': 0.2.0_rollup@3.7.5
   lightningcss-cli: 1.17.1
-  "plugin-json\n": |
-    link:@rollup/plugin-json
   pnpm: 7.18.2
   rollup: 3.7.5
   sass: 1.57.0
