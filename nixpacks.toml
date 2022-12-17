@@ -1,5 +1,14 @@
+[phases.setup]
+cmds = ['...', 'npm install -g corepack', 'corepack enable', 'corepack prepare pnpm@7.18.1 --activate']
+
+[phases.install]
+dependsOn = ['setup']
+cmds = ['...']
+
 [phases.build]
-cmd = 'bundle exec rake server:build'
+dependsOn = ['install']
+cmds = ['...', 'bundle install', 'pnpm i --frozen-lockfile', 'bundle exec hanami db migrate', 'pnpm run build', 'bundle exec hanami assets precompile']
 
 [start]
-cmd = 'bundle exec rake server:start'
+dependsOn = ['build']
+cmd = 'rackup config.ru -p $PORT'
