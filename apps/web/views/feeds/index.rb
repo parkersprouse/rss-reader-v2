@@ -14,7 +14,7 @@ module Web
             begin
               res = Faraday.get(feed[:source])
               input = RSS::Parser.parse(res.body)
-              output[:title] = input.channel.title
+              output[:title] = feed[:title] || input.channel.title
               output[:entries] = input.items.dup
             rescue
               output[:title] = 'Failed to parse feed'
@@ -23,7 +23,8 @@ module Web
 
             output
           end
-          .sort_by { |feed| feed[:created_at] }
+          .sort_by { |feed| feed[:sort_order] }
+          .sort { |a, b| (a[:sort_order].nil? ? -1 : 1) <=> (b[:sort_order].nil? ? -1 : 1) }
           .sort { |a, b| (a[:error].present? ? 1 : -1) <=> (b[:error].present? ? 1 : -1) }
         end
       end

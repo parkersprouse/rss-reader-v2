@@ -2,13 +2,10 @@
 <html>
   <head>
     <title>RSS Reader</title>
+    <meta name='description' content='Collect all of your favorite RSS feeds in one easy-to-use place'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name='turbo-cache-control' content='no-preview'>
     <%= csrf_meta_tags %>
-    <% if flash[:error_toast].present? %>
-      <meta name='error-flash' content='<%= flash[:error_toast] %>' />
-    <% end %>
-    <% if flash[:success_toast].present? %>
-      <meta name='success-flash' content='<%= flash[:success_toast] %>' />
-    <% end %>
     <link href='https://fonts.googleapis.com' rel='preconnect'>
     <link href='https://fonts.gstatic.com' rel='preconnect' crossorigin>
     <%= stylesheet 'styles' %>
@@ -20,5 +17,15 @@
       <%= render partial: './navbar' %>
     <% end %>
     <%= yield %>
+    <script type='text/javascript'>
+      window.RssReader = {
+        <% if flash[:error_toast].present? %>
+          errmsg: '<%= flash[:error_toast] %>',
+        <% end %>
+        <% if flash[:success_toast].present? %>
+          sucmsg: '<%= flash[:success_toast] %>',
+        <% end %>
+      };
+    </script>
   </body>
 </html>

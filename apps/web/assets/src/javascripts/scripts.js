@@ -1,10 +1,10 @@
 import feather from 'feather-icons';
 import { Application } from '@hotwired/stimulus';
-import * as Turbo from '@hotwired/turbo';
-import DeleteController from './controllers/delete_controller.js';
-import EditController from './controllers/edit_controller.js';
+import DeleteController from './controllers/delete_controller';
+import EditController from './controllers/edit_controller';
 import sortable from './lib/sortable';
 import SnackBar from './vendor/js-snackbar';
+import '@hotwired/turbo';
 
 window.Stimulus = Application.start();
 Stimulus.register('delete', DeleteController);
@@ -14,11 +14,10 @@ document.addEventListener('turbo:load', () => {
   feather.replace();
   sortable();
 
-  const success_msg = document.querySelector('meta[name="success-flash"]')?.content;
-  if (success_msg) {
+  if (window.RssReader?.sucmsg) {
     SnackBar({
       fixed: true,
-      message: success_msg,
+      message: window.RssReader.sucmsg,
       position: 'tr',
       speed: 250,
       status: 'success',
@@ -26,11 +25,10 @@ document.addEventListener('turbo:load', () => {
     });
   }
 
-  const error_msg = document.querySelector('meta[name="error-flash"]')?.content;
-  if (error_msg) {
+  if (window.RssReader?.errmsg) {
     SnackBar({
       fixed: true,
-      message: error_msg,
+      message: window.RssReader.errmsg,
       position: 'tr',
       speed: 250,
       status: 'error',

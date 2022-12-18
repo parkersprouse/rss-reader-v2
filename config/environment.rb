@@ -1,11 +1,14 @@
 require 'bundler/setup'
 require 'hanami/setup'
+require 'hanami/middleware/body_parser'
 require 'hanami/model'
 require_relative '../lib/rss_reader'
 require_relative '../apps/web/application'
 
 Hanami.configure do
   mount Web::Application, at: '/'
+
+  middleware.use Hanami::Middleware::BodyParser, :json
 
   model do
     adapter :sql, ENV.fetch('DATABASE_URL')

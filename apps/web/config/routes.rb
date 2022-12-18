@@ -20,6 +20,10 @@ namespace 'feeds' do
   post '/', to: 'feeds#create', as: :feed_create
   patch '/:id', to: 'feeds#update', as: :feed_update
   delete '/:id', to: 'feeds#delete', as: :feed_delete
+  post '/update_sort_order', to: 'feeds#update_sort_order', as: :feed_sort_order_update
 end
-get '/settings', to: 'settings#show'
-patch '/settings', to: 'settings#update'
+
+namespace 'settings' do
+  get '/', to: 'settings#show', as: :settings_show
+  patch '/', to: 'settings#update', as: :settings_update
+end

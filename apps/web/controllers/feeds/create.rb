@@ -26,7 +26,7 @@ module Web
         private
 
         def handle_error(exception)
-          flash[:error_alert] = exception.message || 'There was a problem adding the feed'
+          flash[:error_toast] = exception.message || 'There was a problem adding the feed'
           redirect_to routes.feed_index_path
         end
       end

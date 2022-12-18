@@ -5,7 +5,7 @@
     <div class='container'>
       <div class='row feeds-list'>
         <% parsed_feeds.each do |feed| %>
-          <div class='col col-33'>
+          <div class='col col-33' id='<%= feed[:id] %>'>
             <div class='gra-card'>
               <div class='gra-card-content'>
                 <h5 class='gra-card-title'>

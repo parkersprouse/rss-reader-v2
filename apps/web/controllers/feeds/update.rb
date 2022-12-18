@@ -7,18 +7,19 @@ module Web
         handle_exception FeedFormError => :handle_error
 
         before :must_be_authenticated
-        before { raise FeedFormError, 'Please make sure the form is filled out' unless params.valid? }
+        before { raise FeedFormError, 'A feed URL is required' unless params.valid? }
         before { raise FeedFormError, 'Feed not found' if feed.blank? }
 
         params do
           required(:id).filled(:str?)
           required(:feeds).schema do
             required(:feed_url).filled(:str?)
+            optional(:title).filled(:str?)
           end
         end
 
         def call(params)
-          feed.update(source: params.get(:feeds, :feed_url))
+          feed.update(source: params.get(:feeds, :feed_url), title: params.get(:feeds, :title))
           flash[:success_toast] = 'Feed successfully updated'
           redirect_to routes.feed_index_path
         rescue Hanami::Model::Error

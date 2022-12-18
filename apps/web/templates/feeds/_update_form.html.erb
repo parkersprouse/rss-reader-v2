@@ -1,6 +1,12 @@
 <%= form_for :feeds, routes.feed_update_path(feed[:id]), method: :patch do
   div class: 'edit-feed-form' do
     div class: 'gra-form-group' do
+      span class: 'prefixed-input prefixed-input--title' do
+        text_field :title, placeholder: 'Feed Title', value: feed[:title]
+      end
+    end
+
+    div class: 'gra-form-group' do
       span class: 'prefixed-input prefixed-input--url' do
         text_field :feed_url, placeholder: 'Feed URL', value: feed[:source]
       end

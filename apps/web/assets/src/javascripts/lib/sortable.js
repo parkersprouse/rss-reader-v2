@@ -11,6 +11,20 @@ export default function() {
       draggable: '.col',
       easing: 'cubic-bezier(1, 0, 0, 1)',
       handle: '.gra-card-title',
+
+      onUpdate: (event) => {
+        const { children } = event.to;
+        const list = Object.keys(children).map((ele) => ({ index: ele, id: children[ele].id }));
+
+        fetch('/feeds/update_sort_order', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
+          },
+          body: JSON.stringify({ body: list }),
+        }).catch(() => {});
+      },
     },
   );
 };
