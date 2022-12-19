@@ -1,17 +1,25 @@
-<div class='navbar'>
-  <span tooltip='feeds' tooltip-position='bottom'>
-    <a href='/feeds'>
-      <i data-feather='home'></i>
-    </a>
-  </span>
-  <span tooltip='settings' tooltip-position='bottom'>
-    <a href='/settings'>
-      <i data-feather='settings'></i>
-    </a>
-  </span>
-  <span tooltip='logout' tooltip-position='bottom'>
-    <a href='/auth/sign_out'>
-      <i data-feather='log-out'></i>
-    </a>
-  </span>
-</div>
+<%
+  feed_route = routes.feed_index_path
+  settings_route = routes.settings_show_path
+  logout_route = routes.sign_out_path
+%>
+
+<nav class='navbar'>
+  <ul class='gra-nav'>
+    <li class='gra-nav-item'>
+      <a class='<%= current_page?(feed_route) ? "current " : nil %>gra-nav-link' href='<%= feed_route %>'>
+        <i data-feather='home'></i>
+      </a>
+    </li>
+    <li class='gra-nav-item'>
+      <a class='<%= current_page?(settings_route) ? "current " : nil %>gra-nav-link' href='<%= settings_route %>'>
+        <i data-feather='settings'></i>
+      </a>
+    </li>
+    <li class='gra-nav-item'>
+      <a class='gra-nav-link' href='<%= logout_route %>'>
+        <i data-feather='log-out'></i>
+      </a>
+    </li>
+  </ul>
+</nav>

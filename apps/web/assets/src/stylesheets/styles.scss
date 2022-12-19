@@ -20,17 +20,14 @@ html, body {
 
 .main-container {
   margin: auto;
-  padding: 2rem;
+  padding: 0 2rem 2rem 2rem;
 
   @media (min-width: 768px) {
     max-width: 50%;
   }
 }
 
-.center-container {
-  align-content: center;
-  flex-wrap: wrap;
-
+.content-container {
   > .gra-card {
     width: 25%;
 
@@ -46,6 +43,11 @@ html, body {
       width: 90%;
     }
   }
+}
+
+.centered-container {
+  align-content: center;
+  flex-wrap: wrap;
 }
 
 fieldset {

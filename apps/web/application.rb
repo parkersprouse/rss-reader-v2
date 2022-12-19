@@ -12,6 +12,8 @@ module Web
 
       load_paths << [
         'controllers',
+        'helpers',
+        'mixins',
         'views'
       ]
 
@@ -73,15 +75,14 @@ module Web
       view.prepare do
         include Hanami::Helpers
         include Web::Assets::Helpers
+        include Web::Helpers::PathHelper
       end
     end
 
     configure :production do
       assets do
         compile false
-
         fingerprint true
-
         subresource_integrity :sha256
       end
     end

@@ -23,8 +23,11 @@ module Web
 
             output
           end
-          .sort_by { |feed| feed[:sort_order] }
-          .sort { |a, b| (a[:sort_order].nil? ? -1 : 1) <=> (b[:sort_order].nil? ? -1 : 1) }
+          # sort entries by their provided sort order
+          .sort_by { |feed| (feed[:sort_order] || 1) }
+          # put entries with no sort order at the end of the list
+          .sort { |a, b| (a[:sort_order].nil? ? 1 : -1) <=> (b[:sort_order].nil? ? 1 : -1) }
+          # then put errors at the end of the list
           .sort { |a, b| (a[:error].present? ? 1 : -1) <=> (b[:error].present? ? 1 : -1) }
         end
       end

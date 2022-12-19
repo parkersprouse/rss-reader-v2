@@ -1,0 +1,76 @@
+<div class='content-container gra-flex gra-flex-jc-c'>
+  <div class='gra-card'>
+    <div class='gra-card-content'>
+      <div class='gra-card-body'>
+        <%=
+          form_for :profile, routes.settings_update_path, method: :patch do
+            fieldset do
+              legend do
+                h5 'Profile', class: 'gra-heading'
+              end
+
+              if flash[:error_alert].present?
+                div class: 'gra-mg-bottom-m gra-alert red', role: 'alert' do
+                  div class: 'alert-icon' do
+                    i '', 'data-feather': 'x-circle'
+                  end
+                  div class: 'alert-content' do
+                    flash[:error_alert]
+                  end
+                end
+              end
+
+              if flash[:success_alert].present?
+                div class: 'gra-mg-bottom-m gra-alert green', role: 'alert' do
+                  div class: 'alert-icon' do
+                    i '', 'data-feather': 'check-circle'
+                  end
+                  div class: 'alert-content' do
+                    flash[:success_alert]
+                  end
+                end
+              end
+
+              div class: 'gra-form-group' do
+                label 'E-mail', for: :email
+                span class: 'prefixed-input prefixed-input--email' do
+                  email_field :email, value: current_user.email
+                end
+              end
+
+              div class: 'gra-form-group' do
+                label 'New Password', for: :new_password
+                span class: 'prefixed-input prefixed-input--password' do
+                  password_field :new_password
+                end
+              end
+
+              div class: 'gra-form-group' do
+                label 'Confirm New Password', for: :new_password_confirmation
+                span class: 'prefixed-input prefixed-input--password' do
+                  password_field :new_password_confirmation
+                end
+              end
+
+              hr style: 'margin-bottom: 1.4rem; color: #d9dcde; border-style: solid; border-bottom-width: 0;'
+
+              div class: 'gra-form-group' do
+                label 'Current Password', for: :current_password
+                span class: 'prefixed-input prefixed-input--password' do
+                  password_field :current_password
+                end
+              end
+
+              div class: 'gra-form-group gra-center-text' do
+                submit class: 'gra-btn gra-width-100' do
+                  span 'Update Profile'
+                  i '', 'data-feather': 'user-check', class: 'icon-right'
+                end
+              end
+            end
+          end
+        %>
+      </div>
+    </div>
+  </div>
+</div>
