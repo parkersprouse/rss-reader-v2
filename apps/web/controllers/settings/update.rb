@@ -11,28 +11,37 @@ module Web
         before :must_be_authenticated
 
         before do
-          raise ProfileFormError, 'Make sure the form is filled out' unless params.valid?
+          context = params.get(:profile, :context)
+          raise ProfileFormError unless %w(profile password).include?(context)
 
           if BCrypt::Password.new(current_user.pw_hash) != current_password
             raise ProfileFormError, 'Current password incorrect'
           end
 
-          if new_password.present? && new_password != new_password_confirmation
-            raise ProfileFormError, 'New password confirmation incorrect'
+          if context == 'password' && (new_password.blank? || new_password != new_password_confirmation)
+            raise ProfileFormError, 'New password not filled out correctly'
+          end
+
+          if context == 'profile' && !email.match?(/\w+@\w+\.\w+/)
+            raise ProfileFormError, 'Provided e-mail is invalid'
           end
         end
 
+        # Not actually checking param validity through the .valid? method
+        # Mostly just keeping this here for reference
         params do
           required(:profile).schema do
-            required(:email).filled(:str?, format?: /\w+@\w+\.\w+/)
+            required(:context) { filled? & str? & included_in?(%w(profile password))}
             required(:current_password).filled(:str?)
+            optional(:email) { str? & format?(/\w+@\w+\.\w+/) }
             optional(:new_password) { str? }
             optional(:new_password_confirmation) { str? }
           end
         end
 
         def call(params)
-          payload = { email: email }
+          payload = {}
+          payload[:email] = email if email.present?
           payload[:pw_hash] = BCrypt::Password.create(new_password) if new_password.present?
           current_user.update(payload)
 
@@ -61,7 +70,7 @@ module Web
         end
 
         def handle_error(exception)
-          flash[:error_alert] = exception.message || 'There was a problem updating your profile'
+          flash[:error_toast] = exception.message || 'There was a problem updating your profile'
           redirect_to routes.settings_show_path
         end
       end

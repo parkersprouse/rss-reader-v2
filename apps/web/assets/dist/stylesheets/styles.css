@@ -3433,6 +3433,7 @@ textarea {
   text-align: center;
 }
 .navbar .gra-nav {
+  height: 4rem;
   justify-content: center;
   width: 100%;
 }
@@ -3720,7 +3721,7 @@ html, body {
 
 .main-container {
   margin: auto;
-  padding: 0 2rem 2rem 2rem;
+  padding: 0 4rem 4rem 4rem;
 }
 @media (min-width: 768px) {
   .main-container {
@@ -3835,10 +3836,13 @@ fieldset > legend {
   }
   .add-feed-form .gra-form-group input {
     border-top-right-radius: 0.2rem;
+    border-bottom-left-radius: 0rem;
     border-right-width: 1px;
+    border-bottom-width: 0;
     min-height: 4rem;
   }
   .add-feed-form .gra-form-group .gra-btn {
+    border-top-right-radius: 0;
     border-bottom-left-radius: 0.2rem;
     min-height: 4rem;
   }
@@ -3862,6 +3866,12 @@ fieldset > legend {
   margin-bottom: 2rem;
 }
 
+@media (max-width: 767px) {
+  .feeds-list .col {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
 .feeds-list .gra-card {
   height: 100%;
   margin-bottom: 0;
