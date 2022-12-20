@@ -21,9 +21,10 @@ html, body {
 .main-container {
   margin: auto;
   padding: 0 4rem 4rem 4rem;
+  width: 60%;
 
-  @media (min-width: 768px) {
-    max-width: 50%;
+  @media screen and (max-width: 768px) {
+    width: 100%;
   }
 }
 
@@ -110,7 +111,11 @@ fieldset {
 .add-feed-form {
   display: flex;
   align-items: stretch;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+  }
 
   .gra-form-group {
     margin-bottom: 0;
@@ -136,7 +141,7 @@ fieldset {
       border-bottom-left-radius: 0;
     }
 
-    @media (max-width: 767px) {
+    @media (max-width: 768px) {
       &:first-child {
         flex-basis: 100%;
       }
