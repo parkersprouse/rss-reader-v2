@@ -1,49 +1,30 @@
 <div class='main-container'>
   <%= render partial: 'create_form' %>
 
-  <% if parsed_feeds.present? %>
+  <% if feeds.present? %>
     <div class='row feeds-list'>
-      <% parsed_feeds.each do |feed| %>
-        <div class='col col-33' id='<%= feed[:id] %>'>
+      <% feeds.each do |feed| %>
+        <turbo-frame class='col col-33' id='<%= feed.id %>' src='<%= routes.feed_show_path(feed.id) %>'>
           <div class='gra-card'>
             <div class='gra-card-content'>
               <h5 class='gra-card-title'>
-                <%= feed[:title] %>
-                <span tooltip='refresh' data-id='<%= feed[:id] %>'>
-                  <i data-feather='refresh-cw'></i>
-                </span>
-                <span tooltip='edit' data-controller='edit' data-action='click->edit#showEdit' data-id='<%= feed[:id] %>'>
-                  <i data-feather='edit'></i>
-                </span>
-                <span tooltip='delete' data-controller='delete' data-action='click->delete#action' data-id='<%= feed[:id] %>'>
-                  <i data-feather='x-circle'></i>
-                </span>
-                <%= form_for :feeds, routes.feed_delete_path(feed[:id]), method: :delete, style: 'display: none;', id: feed[:id] do; end; %>
+                Loading Feed...
               </h5>
-
-              <div class='gra-card-body edit-form-container' id='edit-<%= feed[:id] %>' style='display: none;'>
-                <%= render partial: 'update_form', locals: { feed: feed } %>
-              </div>
-
-              <div class='gra-card-body' id='show-<%= feed[:id] %>'>
-                <% if feed[:error].present? %>
-                  <%= feed[:error] %>
-                <% end %>
-                <% if feed[:entries].present? %>
-                  <ul class='gra-list'>
-                    <% feed[:entries].each do |entry| %>
-                      <li class='gra-list-item'>
-                        <a href='<%= entry.link %>' target='_blank'>
-                          <%= entry.title %>
-                        </a>
-                      </li>
-                    <% end %>
-                  </ul>
-                <% end %>
+              <div class='gra-card-body'>
+                <%# <div class='gra-progress-circle gra-loading gra-circle-turn'>
+                  <svg width='80' height='80' viewBox='0 0 80 80'>
+                    <circle class='gra-progress-circle-value' cx='40' cy='40' r='33' fill='none'></circle>
+                  </svg>
+                </div> %>
+                <div class='gra-loading-dots'>
+                  <span class='gra-loading-dot dot-1'></span>
+                  <span class='gra-loading-dot dot-2'></span>
+                  <span class='gra-loading-dot dot-3'></span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </turbo-frame>
       <% end %>
     </div>
   <% end %>

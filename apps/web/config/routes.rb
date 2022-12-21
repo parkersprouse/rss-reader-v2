@@ -23,6 +23,10 @@ namespace 'feeds' do
   post '/update_sort_order', to: 'feeds#update_sort_order', as: :feed_sort_order_update
 end
 
+namespace 'feed' do
+  get '/:id', to: 'feed#show', as: :feed_show
+end
+
 namespace 'settings' do
   get '/', to: 'settings#show', as: :settings_show
   patch '/', to: 'settings#update', as: :settings_update

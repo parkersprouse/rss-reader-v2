@@ -8,8 +8,8 @@ module Web
 
         expose :feeds
 
-        def call(params)
-          @feeds ||= current_user.feeds
+        def call(_)
+          @feeds ||= current_user.feeds.select(:id, :sort_order).order(:sort_order)
         end
       end
     end

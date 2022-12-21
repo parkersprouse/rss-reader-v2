@@ -2,6 +2,7 @@ import feather from 'feather-icons';
 import { Application } from '@hotwired/stimulus';
 import DeleteController from './controllers/delete_controller';
 import EditController from './controllers/edit_controller';
+import RefreshController from './controllers/refresh_controller';
 import sortable from './lib/sortable';
 import SnackBar from './vendor/js-snackbar';
 import '@hotwired/turbo';
@@ -9,6 +10,7 @@ import '@hotwired/turbo';
 window.Stimulus = Application.start();
 Stimulus.register('delete', DeleteController);
 Stimulus.register('edit', EditController);
+Stimulus.register('refresh', RefreshController);
 
 document.addEventListener('turbo:load', () => {
   feather.replace();
@@ -35,4 +37,8 @@ document.addEventListener('turbo:load', () => {
       timeout: 2500,
     });
   }
+});
+
+document.addEventListener('turbo:frame-render', () => {
+  feather.replace();
 });
