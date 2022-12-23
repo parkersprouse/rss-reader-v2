@@ -10,7 +10,7 @@
     <link href='https://fonts.gstatic.com' rel='preconnect' crossorigin>
     <%= stylesheet 'styles' %>
     <%= javascript 'scripts', defer: true %>
-    <%= favicon %>
+    <%= favicon 'favicon.png', type: 'image/png' %>
   </head>
   <body>
     <% if authenticated? %>

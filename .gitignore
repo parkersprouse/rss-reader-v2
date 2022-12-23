@@ -3,6 +3,7 @@
 .env.local
 .env.*.local
 node_modules
+.DS_Store
 
 /apps/web/assets/dist/javascripts
 /apps/web/assets/dist/stylesheets

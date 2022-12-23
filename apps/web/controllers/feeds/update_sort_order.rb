@@ -22,7 +22,7 @@ module Web
             Feed.find_by(id: feed[:id]).update(sort_order: feed[:index])
           end
 
-          self.status = 201
+          self.status = 204
         end
       end
     end
