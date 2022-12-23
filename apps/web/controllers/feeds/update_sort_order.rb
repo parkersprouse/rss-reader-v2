@@ -19,7 +19,7 @@ module Web
 
         def call(params)
           params.get(:body).each do |feed|
-            Feed.find(feed[:id]).update(sort_order: feed[:index])
+            Feed.find_by(id: feed[:id]).update(sort_order: feed[:index])
           end
 
           self.status = 201

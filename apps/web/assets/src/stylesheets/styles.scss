@@ -18,6 +18,18 @@ html, body {
   height: 100%;
 }
 
+@media screen and (min-width: 768px) {
+  .visible-mobile {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hidden-mobile {
+    display: none;
+  }
+}
+
 .main-container {
   margin: auto;
   padding: 0 4rem 4rem 4rem;
@@ -190,7 +202,6 @@ fieldset {
 }
 
 .feeds-list {
-
   @media (max-width: 767px) {
     .col {
       padding-top: 2rem;
@@ -206,11 +217,25 @@ fieldset {
       display: flex;
       flex-direction: column;
       max-height: 400px;
+      min-height: 400px;
 
       .gra-card-title {
-        cursor: move;
+        @media screen and (min-width: 768px) {
+          cursor: move;
+        }
 
-        .feather {
+        > .feed-actions {
+          display: none;
+          padding-top: 1rem;
+
+          > span > .feather {
+            cursor: pointer;
+            height: 14px;
+            width: 14px;
+          }
+        }
+
+        > span > .feather {
           cursor: pointer;
           display: none;
           height: 14px;
@@ -219,7 +244,13 @@ fieldset {
         }
 
         &:hover {
-          .feather {
+          > .feed-actions {
+            display: flex;
+            justify-content: space-between;
+            align-content: center;
+          }
+
+          > span > .feather {
             display: initial;
           }
         }

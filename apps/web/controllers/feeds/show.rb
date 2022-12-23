@@ -2,7 +2,7 @@ require './lib/rss_reader/entities/feed'
 
 module Web
   module Controllers
-    module Feed
+    module Feeds
       class Show
         include Web::Action
 

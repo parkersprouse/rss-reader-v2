@@ -3,6 +3,7 @@ import { Application } from '@hotwired/stimulus';
 import DeleteController from './controllers/delete_controller';
 import EditController from './controllers/edit_controller';
 import RefreshController from './controllers/refresh_controller';
+import ReorderController from './controllers/reorder_controller';
 import sortable from './lib/sortable';
 import SnackBar from './vendor/js-snackbar';
 import '@hotwired/turbo';
@@ -11,10 +12,11 @@ window.Stimulus = Application.start();
 Stimulus.register('delete', DeleteController);
 Stimulus.register('edit', EditController);
 Stimulus.register('refresh', RefreshController);
+Stimulus.register('reorder', ReorderController);
 
 document.addEventListener('turbo:load', () => {
   feather.replace();
-  sortable();
+  window.Sortable = sortable();
 
   if (window.RssReader?.sucmsg) {
     SnackBar({

@@ -3,7 +3,7 @@ require 'rss'
 
 module Web
   module Views
-    module Feed
+    module Feeds
       class Show
         include Web::View
 

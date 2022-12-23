@@ -18,13 +18,10 @@ end
 namespace 'feeds' do
   get '/', to: 'feeds#index', as: :feed_index
   post '/', to: 'feeds#create', as: :feed_create
+  get '/:id', to: 'feeds#show', as: :feed_show
   patch '/:id', to: 'feeds#update', as: :feed_update
   delete '/:id', to: 'feeds#delete', as: :feed_delete
   post '/update_sort_order', to: 'feeds#update_sort_order', as: :feed_sort_order_update
-end
-
-namespace 'feed' do
-  get '/:id', to: 'feed#show', as: :feed_show
 end
 
 namespace 'settings' do

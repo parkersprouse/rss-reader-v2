@@ -1,16 +1,18 @@
 import Sortable from 'sortablejs/modular/sortable.core.esm.js';
 
 export default function() {
+  // const mobile = window.matchMedia('(max-width: 768px)').matches;
   const feed_list = document.querySelector('.feeds-list');
   if (!feed_list) return;
 
-  const sortable = Sortable.create(
+  return Sortable.create(
     feed_list,
     {
       animation: 150,
+      dataIdAttr: 'id',
       draggable: '.col',
       easing: 'cubic-bezier(1, 0, 0, 1)',
-      handle: '.gra-card-title',
+      handle: '.gra-card-title.hidden-mobile',
 
       onUpdate: (event) => {
         const { children } = event.to;
