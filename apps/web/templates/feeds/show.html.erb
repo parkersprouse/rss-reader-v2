@@ -49,7 +49,7 @@
         <ul class='gra-list'>
           <% parsed_feed[:entries].each do |entry| %>
             <li class='gra-list-item'>
-              <a href='<%= entry.link %>' target='_blank'>
+              <a href='<%= entry.url %>' target='_blank'>
                 <%= entry.title %>
               </a>
             </li>
