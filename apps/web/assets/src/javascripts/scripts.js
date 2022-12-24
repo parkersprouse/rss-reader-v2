@@ -1,4 +1,4 @@
-import feather from 'feather-icons';
+﻿import feather from 'feather-icons';
 import { Application } from '@hotwired/stimulus';
 import DeleteController from './controllers/delete_controller';
 import EditController from './controllers/edit_controller';

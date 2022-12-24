@@ -1,4 +1,4 @@
-import feather from 'feather-icons';
+﻿import feather from 'feather-icons';
 import { Controller } from '@hotwired/stimulus';
 
 export default class LoadFeedController extends Controller {

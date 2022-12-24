@@ -1,4 +1,4 @@
-/* v1.5.1 - https://github.com/mickelsonmichael/js-snackbar */
+﻿/* v1.5.1 - https://github.com/mickelsonmichael/js-snackbar */
 
 const SnackBar = (function init(userOptions) {
   var _This = this;

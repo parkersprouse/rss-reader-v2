@@ -1,4 +1,4 @@
-import Sortable from 'sortablejs/modular/sortable.core.esm.js';
+﻿import Sortable from 'sortablejs/modular/sortable.core.esm.js';
 
 export default function() {
   // const mobile = window.matchMedia('(max-width: 768px)').matches;

@@ -4,11 +4,14 @@ const { nodeResolve } = require('@rollup/plugin-node-resolve');
 const replace = require('@rollup/plugin-replace');
 const terser = require('@rollup/plugin-terser');
 
-const config = {
+const production = process.env.HANAMI_ENV === 'production';
+
+module.exports = {
   input: 'apps/web/assets/src/javascripts/scripts.js',
   output: {
     file: 'apps/web/assets/dist/javascripts/scripts.js',
     format: 'iife',
+    sourceMap: true,
   },
   plugins: [
     nodeResolve(),
@@ -20,15 +23,6 @@ const config = {
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       },
     }),
+    production && terser(), // Minify only in prod
   ],
 };
-
-if (process.env.HANAMI_ENV === 'production') {
-  config.plugins.push(terser({
-    sourceMap: {
-      url: 'inline',
-    },
-  }));
-}
-
-module.exports = config;
