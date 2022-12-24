@@ -6,6 +6,7 @@ module Web
     module Feeds
       class Show
         include Web::View
+        layout false # no layout because we only wanted the card element returned
 
         def parsed_feed
           output = {}.merge(feed)

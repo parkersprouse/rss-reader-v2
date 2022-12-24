@@ -4,7 +4,7 @@
   <% if feeds.present? %>
     <div class='row feeds-list'>
       <% feeds.each do |feed| %>
-        <turbo-frame class='col col-33' id='<%= feed.id %>' src='<%= routes.feed_show_path(feed.id) %>'>
+        <div class='col col-33' id='feed-<%= feed.id %>' data-controller='load-feed'>
           <div class='gra-card'>
             <div class='gra-card-content'>
               <h5 class='gra-card-title'>
@@ -19,7 +19,7 @@
               </div>
             </div>
           </div>
-        </turbo-frame>
+        </div>
       <% end %>
     </div>
   <% end %>
