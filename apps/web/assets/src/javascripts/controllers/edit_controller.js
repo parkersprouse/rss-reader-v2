@@ -7,15 +7,15 @@ class EditController extends Controller {
   }
 
   showEdit() {
-    if (!this.edit_form || !this.feed_list) return;
+    if (!this.edit_form || !this.feed_list || this.feed_list.style.display === 'none') return;
     this.feed_list.style.display = 'none';
-    this.edit_form.style.display = 'initial';
+    this.edit_form.style.removeProperty('display');
   }
 
   showPanel() {
-    if (!this.edit_form || !this.feed_list) return;
+    if (!this.edit_form || !this.feed_list || this.edit_form.style.display === 'none') return;
     this.edit_form.style.display = 'none';
-    this.feed_list.style.display = 'initial';
+    this.feed_list.style.removeProperty('display');
   }
 };
 

@@ -8,7 +8,7 @@
       <span tooltip='edit' data-controller='edit' data-action='click->edit#showEdit' data-id='<%= parsed_feed[:id] %>'>
         <i data-feather='edit'></i>
       </span>
-      <span tooltip='delete' data-controller='delete' data-action='click->delete#action' data-id='<%= parsed_feed[:id] %>'>
+      <span tooltip='delete' data-controller='delete' data-action='click->delete#show' data-id='<%= parsed_feed[:id] %>'>
         <i data-feather='x-circle'></i>
       </span>
     </h5>
@@ -31,7 +31,7 @@
         <span data-controller='edit' data-action='click->edit#showEdit' data-id='<%= parsed_feed[:id] %>'>
           <i data-feather='edit'></i>
         </span>
-        <span data-controller='delete' data-action='click->delete#action' data-id='<%= parsed_feed[:id] %>'>
+        <span data-controller='delete' data-action='click->delete#show' data-id='<%= parsed_feed[:id] %>'>
           <i data-feather='x-circle'></i>
         </span>
       </div>
@@ -39,6 +39,10 @@
 
     <div class='gra-card-body edit-form-container' id='edit-<%= parsed_feed[:id] %>' style='display: none;'>
       <%= render partial: 'update_form', locals: { feed: parsed_feed } %>
+    </div>
+
+    <div class='gra-card-body delete-form-container' id='delete-<%= parsed_feed[:id] %>' style='display: none;'>
+      <%= render partial: 'delete_form', locals: { feed: parsed_feed } %>
     </div>
 
     <div class='gra-card-body' id='show-<%= parsed_feed[:id] %>'>
@@ -58,5 +62,4 @@
       <% end %>
     </div>
   </div>
-  <%= form_for :feeds, routes.feed_delete_path(parsed_feed[:id]), method: :delete, style: 'display: none;', id: parsed_feed[:id] do; end; %>
 </div>

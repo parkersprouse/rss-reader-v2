@@ -181,19 +181,21 @@ fieldset {
   }
 }
 
-.edit-form-container {
+.edit-form-container, .delete-form-container {
   padding: 1.6rem;
 
-  .edit-feed-form {
+  .edit-feed-form, .delete-feed-form {
     .gra-form-actions {
       display: flex;
+      flex-wrap: wrap;
       align-content: center;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
+      gap: 1.5rem;
 
       .gra-btn {
-        width: 50%;
+        width: 100%;
+        margin: 0;
       }
     }
   }
