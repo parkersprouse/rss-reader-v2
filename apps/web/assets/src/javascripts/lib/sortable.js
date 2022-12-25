@@ -10,7 +10,7 @@ export default function() {
     {
       animation: 150,
       dataIdAttr: 'id',
-      draggable: '.col',
+      draggable: 'div.col',
       easing: 'cubic-bezier(1, 0, 0, 1)',
       handle: '.gra-card-title.hidden-mobile',
 
