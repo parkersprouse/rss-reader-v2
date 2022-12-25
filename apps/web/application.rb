@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+require 'hanami/action/cache'
 require 'hanami/helpers'
 require 'hanami/assets'
 require 'rack/protection'
@@ -19,7 +21,7 @@ module Web
 
       routes 'config/routes'
 
-      cookies true
+      cookies httponly: true, secure: Hanami.env?(:production)
 
       sessions :cookie,
         httponly: true,
@@ -28,6 +30,10 @@ module Web
         secure: Hanami.env?(:production)
 
       middleware.use Rack::Protection
+
+      default_request_format :html
+
+      default_response_format :html
 
       layout :application
 
@@ -60,7 +66,6 @@ module Web
         style-src 'self' 'unsafe-inline' https:;
         font-src 'self' fonts.gstatic.com fonts.googleapis.com;
         object-src 'none';
-        plugin-types application/pdf;
         child-src 'self';
         frame-src 'self';
         media-src 'self'
@@ -70,6 +75,13 @@ module Web
         include CheckAuthentication
         include ActionScaffold
         include TurboRedirectHelper
+
+        # Add cache control for each of the responses served by our action controllers.
+        # Specifically, ensure that the browser gets a fresh copy of the response each
+        #   time a request is made to ensure we aren't serving outdated responses.
+        # NOTE: Does not apply to assets served from the `/assets` directory.
+        include Hanami::Action::Cache
+        cache_control :private, max_age: 0, must_revalidate: true
       end
 
       view.prepare do

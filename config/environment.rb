@@ -2,12 +2,20 @@ require 'bundler/setup'
 require 'hanami/setup'
 require 'hanami/middleware/body_parser'
 require 'hanami/model'
+require 'rack/brotli'
+require_relative './rack_cache'
 require_relative '../lib/rss_reader'
 require_relative '../apps/web/application'
 
 Hanami.configure do
   mount Web::Application, at: '/'
 
+  early_hints true
+
+  middleware.use RackCache
+  middleware.use Rack::Deflater
+  middleware.use Rack::Brotli
+  middleware.use Rack::Static, urls: ['/assets'], root: 'public'
   middleware.use Hanami::Middleware::BodyParser, :json
 
   model do

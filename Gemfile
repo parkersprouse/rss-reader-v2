@@ -10,6 +10,7 @@ gem 'hanami', '~> 1.3'
 gem 'hanami-model', '~> 1.3'
 gem 'oj'
 gem 'pg'
+gem 'rack-brotli'
 gem 'rack-protection'
 gem 'rake'
 
