@@ -1,7 +1,7 @@
 ﻿import Sortable from 'sortablejs/modular/sortable.core.esm.js';
 
 export default function() {
-  // const mobile = window.matchMedia('(max-width: 768px)').matches;
+  // const mobile = window.matchMedia('(max-width: 767px)').matches;
   const feed_list = document.querySelector('.feeds-list');
   if (!feed_list) return;
 

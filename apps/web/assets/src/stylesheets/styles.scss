@@ -24,7 +24,7 @@ html, body {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .hidden-mobile {
     display: none;
   }
@@ -35,7 +35,7 @@ html, body {
   padding: 0 4rem 4rem 4rem;
   width: 60%;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     width: 100%;
   }
 }
@@ -127,7 +127,7 @@ fieldset {
   align-items: stretch;
   flex-wrap: nowrap;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     flex-wrap: wrap;
   }
 
@@ -155,7 +155,7 @@ fieldset {
       border-bottom-left-radius: 0;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 767px) {
       &:first-child {
         flex-basis: 100%;
       }
@@ -206,8 +206,12 @@ fieldset {
 .feeds-list {
   @media (max-width: 767px) {
     .col {
-      padding-top: 2rem;
       padding-bottom: 2rem;
+      padding-top: 2rem;
+
+      &:first-child {
+        padding-top: 0;
+      }
     }
   }
 
