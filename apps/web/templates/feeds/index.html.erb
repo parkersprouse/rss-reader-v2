@@ -1,26 +1,24 @@
 <div class='main-container'>
-  <%= render partial: 'create_form' %>
-
-  <% if feeds.present? %>
-    <div class='row feeds-list'>
-      <% feeds.each do |feed| %>
-        <div class='col col-33' id='feed-<%= feed.id %>' data-controller='load-feed'>
-          <div class='gra-card'>
-            <div class='gra-card-content'>
-              <h5 class='gra-card-title'>
-                Loading Feed...
-              </h5>
-              <div class='gra-card-body'>
-                <div class='gra-loading-dots'>
-                  <span class='gra-loading-dot dot-1'></span>
-                  <span class='gra-loading-dot dot-2'></span>
-                  <span class='gra-loading-dot dot-3'></span>
-                </div>
+  <div class='row feeds-list'>
+    <% (feeds || []).each do |feed| %>
+      <div class='col col-33' id='feed-<%= feed.id %>' data-controller='load-feed'>
+        <div class='gra-card'>
+          <div class='gra-card-content'>
+            <h5 class='gra-card-title'>
+              Loading Feed...
+            </h5>
+            <div class='gra-card-body'>
+              <div class='gra-loading-dots'>
+                <span class='gra-loading-dot dot-1'></span>
+                <span class='gra-loading-dot dot-2'></span>
+                <span class='gra-loading-dot dot-3'></span>
               </div>
             </div>
           </div>
         </div>
-      <% end %>
-    </div>
-  <% end %>
+      </div>
+    <% end %>
+
+    <%= render partial: 'create_form' %>
+  </div>
 </div>

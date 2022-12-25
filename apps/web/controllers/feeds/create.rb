@@ -11,12 +11,18 @@ module Web
 
         params do
           required(:feeds).schema do
+            optional(:title) { filled? & str? }
             required(:feed_url).filled(:str?)
           end
         end
 
         def call(params)
-          Feed.create(user_id: current_user.id, source: params.get(:feeds, :feed_url))
+          Feed.create(
+            user_id: current_user.id,
+            source: params.get(:feeds, :feed_url),
+            title: params.get(:feeds, :title)
+          )
+
           flash[:success_toast] = 'Feed successfully created'
           redirect_to routes.feed_index_path
         rescue Hanami::Model::Error

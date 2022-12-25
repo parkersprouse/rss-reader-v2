@@ -1,27 +1,27 @@
 <%=
-  form_for :feeds, routes.feed_create_path do
-    if flash[:error_alert].present?
-      div class: 'gra-mg-bottom-m gra-alert red', role: 'alert' do
-        div class: 'alert-icon' do
-          i '', 'data-feather': 'x-circle'
+  form_for :feeds, routes.feed_create_path, class: 'col col-33' do
+    div class: 'gra-card' do
+      div class: 'gra-card-content' do
+        h5 class: 'gra-card-title' do
+          div class: 'gra-form-group' do
+            span class: 'prefixed-input prefixed-input--title' do
+              text_field :title, placeholder: 'Feed Title'
+            end
+          end
         end
-        div class: 'alert-content' do
-          flash[:error_alert]
-        end
-      end
-    end
+        div class: 'gra-card-body' do
+          div class: 'gra-form-group' do
+            span class: 'prefixed-input prefixed-input--url' do
+              text_field :feed_url, placeholder: 'Feed URL'
+            end
+          end
 
-    div class: 'add-feed-form' do
-      div class: 'gra-form-group' do
-        span class: 'prefixed-input prefixed-input--url' do
-          text_field :feed_url, placeholder: 'Feed URL'
-        end
-      end
-
-      div class: 'gra-form-group' do
-        submit class: 'gra-btn gra-width-100' do
-          span 'Add'
-          i '', 'data-feather': 'plus', class: 'icon-right'
+          div class: 'gra-form-group' do
+            submit class: 'gra-btn gra-width-100' do
+              span 'Add'
+              i '', 'data-feather': 'plus', class: 'icon-right'
+            end
+          end
         end
       end
     end
