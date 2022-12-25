@@ -5,6 +5,7 @@ import EditController from './controllers/edit_controller';
 import LoadFeedController from './controllers/load_feed_controller';
 import RefreshController from './controllers/refresh_controller';
 import ReorderController from './controllers/reorder_controller';
+import { freezeScrollOnNextRender } from './lib/freeze_scroll';
 import sortable from './lib/sortable';
 import SnackBar from './vendor/js-snackbar';
 import '@hotwired/turbo';
@@ -41,4 +42,8 @@ document.addEventListener('turbo:load', () => {
       timeout: 2500,
     });
   }
+});
+
+document.addEventListener('turbo:submit-start', (e) => {
+  if (e.target.dataset?.scrollfreeze) freezeScrollOnNextRender();
 });

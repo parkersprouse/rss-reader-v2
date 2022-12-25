@@ -4,7 +4,7 @@
     <div class='gra-card-content'>
       <div class='gra-card-body'>
         <%=
-          form_for :profile, routes.settings_update_path, method: :patch do
+          form_for :profile, routes.settings_update_path, method: :patch, 'data-scrollfreeze': true do
             fieldset do
               legend do
                 h5 'Update Profile', class: 'gra-heading'
@@ -43,7 +43,7 @@
     <div class='gra-card-content'>
       <div class='gra-card-body'>
         <%=
-          form_for :profile, routes.settings_update_path, method: :patch do
+          form_for :profile, routes.settings_update_path, method: :patch, 'data-scrollfreeze': true do
             fieldset do
               legend do
                 h5 'Change Password', class: 'gra-heading'

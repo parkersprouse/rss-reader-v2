@@ -1,8 +1,11 @@
 ﻿import feather from 'feather-icons';
 import { Controller } from '@hotwired/stimulus';
+import { freezeScrollOnNextRender } from '../lib/freeze_scroll';
 
 export default class RefreshController extends Controller {
   action() {
+    freezeScrollOnNextRender();
+
     const { id } = this.element.dataset;
     const feed = document.getElementById(`feed-${id}`);
 

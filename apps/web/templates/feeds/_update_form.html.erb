@@ -1,4 +1,4 @@
-<%= form_for :feeds, routes.feed_update_path(parsed_feed[:id]), method: :patch do
+<%= form_for :feeds, routes.feed_update_path(parsed_feed[:id]), method: :patch, 'data-scrollfreeze': true do
   div class: 'edit-feed-form' do
     div class: 'gra-form-group' do
       span class: 'prefixed-input prefixed-input--title' do

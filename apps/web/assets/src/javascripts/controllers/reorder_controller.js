@@ -1,4 +1,5 @@
 ﻿import { Controller } from '@hotwired/stimulus';
+import { freezeScrollOnNextRender } from '../lib/freeze_scroll';
 
 export default class ReorderController extends Controller {
   down() {
@@ -37,6 +38,7 @@ export default class ReorderController extends Controller {
   }
 
   saveOrder(arr) {
+    freezeScrollOnNextRender();
     fetch('/feeds/update_sort_order', {
       method: 'POST',
       headers: {

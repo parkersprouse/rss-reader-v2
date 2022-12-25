@@ -3,7 +3,7 @@
     <div class='gra-card-content'>
       <div class='gra-card-body'>
         <%=
-          form_for :auth, routes.process_create_account_path do
+          form_for :auth, routes.process_create_account_path, 'data-scrollfreeze': true do
             fieldset do
               legend do
                 h5 'Create Account', class: 'gra-heading'
