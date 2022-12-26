@@ -9,19 +9,22 @@ export default class LoadFeedController extends Controller {
   load() {
     const { id } = this.element;
 
-    if (window.sessionStorage.getItem(`feed-${id}`)) {
-      this.element.innerHTML = window.sessionStorage.getItem(`feed-${id}`);
+    const stored_feed = JSON.parse(window.sessionStorage.getItem(id));
+    if (stored_feed && (stored_feed.exp - Date.now() > 0)) {
+      this.element.innerHTML = stored_feed.body;
       feather.replace();
-    } else {
-      fetch(`/feeds/${id.replace('feed-', '')}`)
-        .then(response => response.text())
-        .then((html) => {
-          window.sessionStorage.setItem(`feed-${id}`, html);
-          this.element.innerHTML = html;
-          feather.replace();
-        })
-        .catch(() => {
-          this.element.innerHTML = `
+      return;
+    }
+
+    fetch(`/feeds/${id.replace('feed-', '')}`)
+      .then(response => response.text())
+      .then((html) => {
+        window.sessionStorage.setItem(id, JSON.stringify({ body: html, exp: Date.now() + (1000 * 60 * 5) }));
+        this.element.innerHTML = html;
+        feather.replace();
+      })
+      .catch(() => {
+        this.element.innerHTML = `
           <div class='gra-card'>
             <div class='gra-card-content'>
               <h5 class='gra-card-title'>
@@ -32,7 +35,6 @@ export default class LoadFeedController extends Controller {
               </div>
             </div>
           </div>`;
-        });
-    }
+      });
   }
 };

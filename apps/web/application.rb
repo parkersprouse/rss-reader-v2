@@ -21,7 +21,8 @@ module Web
 
       routes 'config/routes'
 
-      cookies httponly: true, secure: Hanami.env?(:production)
+      cookies httponly: true,
+        secure: Hanami.env?(:production)
 
       sessions :cookie,
         httponly: true,

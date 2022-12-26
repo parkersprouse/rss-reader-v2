@@ -7,7 +7,7 @@ export default class RefreshController extends Controller {
     freezeScrollOnNextRender();
 
     const { id } = this.element.dataset;
-    const feed = document.getElementById(`feed-${id}`);
+    const feed = document.getElementById(id);
 
     feed.innerHTML = `
       <div class='gra-card'>
@@ -28,7 +28,7 @@ export default class RefreshController extends Controller {
     fetch(`/feeds/${id}`)
       .then(response => response.text())
       .then((html) => {
-        window.sessionStorage.setItem(`feed-${id}`, html);
+        window.sessionStorage.setItem(id, JSON.stringify({ body: html, exp: Date.now() + (1000 * 60 * 5) }));
         feed.innerHTML = html;
         feather.replace();
       })
