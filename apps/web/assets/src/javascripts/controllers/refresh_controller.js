@@ -7,7 +7,7 @@ export default class RefreshController extends Controller {
     freezeScrollOnNextRender();
 
     const { id } = this.element.dataset;
-    const feed = document.getElementById(id);
+    const feed = document.getElementById(`feed-${id}`);
 
     feed.innerHTML = `
       <div class='gra-card'>
