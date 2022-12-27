@@ -1,12 +1,4 @@
 <div class='main-container'>
-
-  <div style='text-align: right'>
-    <button class='gra-btn gra-btn-outline' data-controller='refresh-all' data-action='click->refresh-all#action'>
-      Refresh All
-      <i data-feather='refresh-cw' class='icon-right'></i>
-    </button>
-  </div>
-
   <div class='row feeds-list'>
     <% (feeds || []).each do |feed| %>
       <div class='col col-33' id='feed-<%= feed.id %>' data-controller='load-feed'>
