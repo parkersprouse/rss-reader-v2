@@ -19,22 +19,6 @@ export default class RefreshController extends Controller {
       </div>
     `;
 
-    // feed.innerHTML = `
-    //   <div class='gra-card'>
-    //     <div class='gra-card-content'>
-    //       <h5 class='gra-card-title'>
-    //         Loading Feed...
-    //       </h5>
-    //       <div class='gra-card-body'>
-    //         <div class='gra-loading-dots'>
-    //           <span class='gra-loading-dot dot-1'></span>
-    //           <span class='gra-loading-dot dot-2'></span>
-    //           <span class='gra-loading-dot dot-3'></span>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>`;
-
     fetch(`/feeds/${id}`)
       .then((response) => response.text())
       .then((html) => {

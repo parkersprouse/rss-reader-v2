@@ -45,3 +45,9 @@ select,
 textarea {
   font-size: 1.6rem;
 }
+
+.gra-modal-wrapper.open {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}

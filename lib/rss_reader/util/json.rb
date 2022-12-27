@@ -23,10 +23,42 @@ class Json
   # @param [Hash] hash
   #   The hash we want to build into a JSON string.
   #
+  # @return [String, nil]
+  #   The JSON string built from the provided hash, or `nil` if the param is not a valid hash.
+  def self.build(hash)
+    return nil unless hash.is_a? Hash
+    Oj.dump(hash)
+  end
+
+  # Create a JSON string out the provided hash.
+  #
+  # @param [Hash] hash
+  #   The hash we want to build into a JSON string.
+  #
   # @return [String]
   #   The JSON string built from the provided hash.
-  def self.build(hash)
+  #
+  # @raise [ArgumentError]
+  #   When the provided parameter is not a valid [Hash].
+  def self.build!(hash)
+    raise ArgumentError, 'Must provide a valid hash to build' unless hash.is_a? Hash
     Oj.dump(hash)
+  end
+
+  # Parses the provided JSON string into a hash.
+  #
+  # @param [String] str
+  #   The JSON string that we want to parse into a {Hash}.
+  # @param [any] args
+  #   Any additional arguments we want to pass to the library's parser.
+  #   (ex. `symbolize_names: true`)
+  #
+  # @return [Hash, nil]
+  #   The hash created out of the provided JSON string, or `nil` if the param is not valid JSON.
+  def self.parse(str, *args)
+    Oj.load(str, *args)
+  rescue ArgumentError
+    nil
   end
 
   # Parses the provided JSON string into a hash.
@@ -39,7 +71,10 @@ class Json
   #
   # @return [Hash]
   #   The hash created out of the provided JSON string.
-  def self.parse(str, *args)
+  #
+  # @raise [ArgumentError]
+  #   When the provided parameter is not valid JSON.
+  def self.parse!(str, *args)
     Oj.load(str, *args)
   end
 
@@ -52,7 +87,7 @@ class Json
   # @return [Boolean]
   #   Whether or not the provided string is valid JSON.
   def self.valid?(str)
-    parse(str)
+    parse!(str)
     true
   rescue ArgumentError, EncodingError, JSON::ParserError
     false

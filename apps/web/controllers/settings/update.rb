@@ -9,12 +9,10 @@ module Web
         handle_exception ProfileFormError => :handle_error
 
         before :must_be_authenticated
-
         before do
-          context = params.get(:profile, :context)
-          raise ProfileFormError unless %w(profile password).include?(context)
+          raise ProfileFormError unless %w(profile password preferences).include?(context)
 
-          if BCrypt::Password.new(current_user.pw_hash) != current_password
+          if context != 'preferences' && BCrypt::Password.new(current_user.pw_hash) != current_password
             raise ProfileFormError, 'Current password incorrect'
           end
 
@@ -30,28 +28,57 @@ module Web
         # Not actually checking param validity through the .valid? method
         # Mostly just keeping this here for reference
         params do
-          required(:profile).schema do
-            required(:context) { filled? & str? & included_in?(%w(profile password))}
+          optional(:profile).schema do
+            required(:context) { filled? & str? & included_in?(%w(profile password)) }
             required(:current_password).filled(:str?)
             optional(:email) { str? & format?(/\w+@\w+\.\w+/) }
             optional(:new_password) { str? }
             optional(:new_password_confirmation) { str? }
           end
+
+          optional(:preferences).schema do
+            required(:context) { filled? & str? & included_in?(%w(preferences)) }
+            required(:refresh_interval) { filled? }
+            required(:theme) { filled? & str? & included_in?(%w(light dark)) }
+          end
         end
 
         def call(params)
-          payload = {}
-          payload[:email] = email if email.present?
-          payload[:pw_hash] = BCrypt::Password.create(new_password) if new_password.present?
-          current_user.update(payload)
+          if context == 'preferences'
+            if current_user.settings.present?
+              current_user.settings.update_settings(payload: preferences)
+            else
+              values = Json.build(UserSettings::DEFAULTS.merge(preferences))
+              UserSettings.create(user_id: current_user.id, value: values)
+            end
+            flash[:success_toast] = 'Preferences successfully updated'
+          else
+            payload = {}
+            payload[:email] = email if email.present?
+            payload[:pw_hash] = BCrypt::Password.create(new_password) if new_password.present?
+            current_user.update(payload)
+            flash[:success_toast] = 'Profile successfully updated'
+          end
 
-          flash[:success_toast] = 'Profile successfully updated'
-          redirect_to routes.settings_show_path
+          redirect_to destination
         rescue Hanami::Model::Error
           raise ProfileFormError, 'There was a problem updating your profile'
         end
 
         private
+
+        def destination
+          return routes.feed_index_path if context == 'preferences'
+          routes.settings_show_path
+        end
+
+        def context
+          params.get(:profile, :context) || params.get(:preferences, :context)
+        end
+
+        def preferences
+          params.get(:preferences)&.reject { |k, _| k.to_s == 'context' }
+        end
 
         def email
           params.get(:profile, :email)
@@ -71,7 +98,7 @@ module Web
 
         def handle_error(exception)
           flash[:error_toast] = exception.message || 'There was a problem updating your profile'
-          redirect_to routes.settings_show_path
+          redirect_to destination
         end
       end
     end

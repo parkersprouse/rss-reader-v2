@@ -35,6 +35,7 @@ module Web
             user = User.create(email: email,
               pw_reset_token: SecureRandom.hex(50),
               pw_reset_token_sent_at: DateTime.now)
+            UserSettings.create(user_id: user.id, value: UserSettings::DEFAULTS)
             Mailers::ActivateAccount.deliver(
               user: user, params: params, reset_route: routes.path(:reset_password))
           end

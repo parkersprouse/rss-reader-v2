@@ -7,6 +7,7 @@ class UserRepository < Hanami::Repository
 
   associations do
     has_many :feeds
+    has_one :user_settings
   end
 
   # Determines if the provided method is available on the `#instance` of this
@@ -40,6 +41,15 @@ class UserRepository < Hanami::Repository
   #   The collection of {Feed}s created by this {User}.
   def feeds_for(id:)
     feeds.where(user_id: id).as(:entity)
+  end
+
+  # @param [UUID] id
+  #   The ID of the {User} that we want to get the {UserSettings} for.
+  #
+  # @return [UserSettings]
+  #   The {UserSettings} object associated with this {User}.
+  def user_settings_for(id:)
+    user_settings.where(user_id: id).as(:entity).first
   end
 
   # @param [UUID] id

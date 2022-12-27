@@ -22,6 +22,12 @@ class User < Hanami::Entity
     UserRepository.feeds_for(id: id)
   end
 
+  # @return [UserSettings]
+  #   The {UserSettings} object associated with this {User}.
+  def settings
+    UserRepository.user_settings_for(id: id)
+  end
+
   # @return [Boolean]
   #   Whether or not the {User} has an assigned password, which will
   #   define if it is active or not.

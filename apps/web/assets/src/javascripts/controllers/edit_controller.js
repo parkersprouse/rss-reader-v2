@@ -1,6 +1,6 @@
 ﻿import { Controller } from '@hotwired/stimulus';
 
-class EditController extends Controller {
+export default class EditController extends Controller {
   connect() {
     this.edit_form = document.getElementById(`edit-${this.element.dataset.id}`);
     this.feed_list = document.getElementById(`show-${this.element.dataset.id}`);;
@@ -18,5 +18,3 @@ class EditController extends Controller {
     this.feed_list.style.removeProperty('display');
   }
 };
-
-export default EditController;
