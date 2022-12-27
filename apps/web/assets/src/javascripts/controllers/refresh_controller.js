@@ -9,7 +9,12 @@ export default class RefreshController extends Controller {
     const { id } = this.element.dataset;
     const feed = document.querySelector(`#feed-${id}`);
 
-    const title = feed.querySelector('.gra-card-title');
+    let selector = '.gra-card-title.hidden-mobile';
+    if (window.matchMedia('(max-width: 767px)').matches) {
+      selector = '.gra-card-title.visible-mobile';
+    }
+
+    const title = feed.querySelector(selector);
     title.innerHTML = `
       ${title.textContent}
       <div class='gra-loading-dots' style='display: inline-flex; width: auto;'>
