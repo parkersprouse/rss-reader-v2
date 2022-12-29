@@ -1,4 +1,6 @@
-﻿.gra-alert {
+﻿@use './mixins/views' as *;
+
+.gra-alert {
   max-width: 100%;
   min-width: 100%;
   width: 100%;
@@ -50,4 +52,38 @@ textarea {
   display: block;
   opacity: 1;
   visibility: visible;
+}
+
+.gra-modal {
+  max-width: 90%;
+
+  @include mobile-view() {
+    top: 0;
+    transform: translate(-50%, 2rem);
+  }
+
+  .gra-modal-body {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: center;
+
+    @include desktop-view() {
+      .gra-form-group {
+        margin: 0;
+      }
+    }
+
+    @include mobile-view() {
+      flex-wrap: wrap;
+
+      .gra-form-group {
+        width: 100%;
+
+        .js-Dropdown {
+          width: 100%;
+        }
+      }
+    }
+  }
 }

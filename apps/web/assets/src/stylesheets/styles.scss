@@ -6,6 +6,8 @@
 @use './gralig-overrides';
 @use './navbar';
 @use './tooltip';
+@use './lib/vanilla-js-dropdown';
+@use './mixins/views' as *;
 @use './vendor/js-snackbar';
 
 @import url('https://fonts.googleapis.com/css2?family=Hubballi&family=Oxanium:wght@200;300;400;500;600;700;800&display=swap');
@@ -18,13 +20,13 @@ html, body {
   height: 100%;
 }
 
-@media screen and (min-width: 768px) {
+@include desktop-view() {
   .visible-mobile {
     display: none;
   }
 }
 
-@media screen and (max-width: 767px) {
+@include mobile-view() {
   .hidden-mobile {
     display: none;
   }
@@ -35,7 +37,7 @@ html, body {
   padding: 0 4rem 4rem 4rem;
   width: 60%;
 
-  @media screen and (max-width: 767px) {
+  @include mobile-view() {
     width: 100%;
   }
 }
@@ -127,7 +129,7 @@ fieldset {
 }
 
 .feeds-list {
-  @media (max-width: 767px) {
+  @include mobile-view() {
     .col {
       padding-bottom: 2rem;
       padding-top: 2rem;
@@ -149,7 +151,7 @@ fieldset {
       min-height: 400px;
 
       .gra-card-title {
-        @media screen and (min-width: 768px) {
+        @include desktop-view() {
           cursor: move;
         }
 
@@ -232,7 +234,7 @@ fieldset {
   align-items: stretch;
   flex-wrap: nowrap;
 
-  @media (max-width: 767px) {
+  @include mobile-view() {
     flex-wrap: wrap;
   }
 
@@ -260,7 +262,7 @@ fieldset {
       border-bottom-left-radius: 0;
     }
 
-    @media (max-width: 767px) {
+    @include mobile-view() {
       &:first-child {
         flex-basis: 100%;
       }

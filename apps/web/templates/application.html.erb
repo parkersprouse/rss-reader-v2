@@ -24,7 +24,7 @@
 
     <div id='preferences-modal' class='gra-modal-wrapper' tabindex='-1' role='dialog'>
       <a class='gra-modal-overlay' href='#' data-controller='modal' data-action='click->modal#close:prevent' data-id='preferences-modal'></a>
-      <div class='gra-modal' style='max-width: 90%;'>
+      <div class='gra-modal'>
         <div class='gra-modal-header'>
           <h5 class='gra-modal-title' id='modal_title'>
             Preferences
@@ -33,20 +33,36 @@
         <%=
           form_for :preferences, routes.settings_update_path, method: :patch, 'data-scrollfreeze': true do
             div class: 'gra-modal-body' do
-              fieldset do
-                hidden_field :context, value: 'preferences'
+              hidden_field :context, value: 'preferences'
 
-                div class: 'gra-form-group' do
-                  div class: 'gra-custom-form-control gra-switch yellow' do
-                    check_box :theme, class: 'gra-custom-form-input', checked_value: 'light', unchecked_value: 'dark', checked: hash[:theme] == 'light'
-                    label 'Theme', for: :theme, class: 'gra-custom-form-label'
-                  end
-                end
+              div class: 'gra-form-group' do
+                label 'Theme', for: 'theme-selector'
+                select :theme,
+                  [
+                    ['Light', 'light'],
+                    ['Dark', 'dark']
+                  ],
+                  id: 'theme-selector',
+                  'data-controller': 'dropdown',
+                  'data-id': 'theme-selector',
+                  options: { selected: hash[:theme] }
+              end
 
-                div class: 'gra-form-group' do
-                  text_field :refresh_interval, inputmode: 'numeric', pattern: '[0-9]*', value: hash[:refresh_interval]
-                  label 'Auto-refresh Interval', for: :refresh_interval
-                end
+              div class: 'gra-form-group' do
+                label 'Auto-refresh Interval', for: 'refresh-interval-selector'
+                select :refresh_interval,
+                  [
+                    ['Off', 0],
+                    ['30 Seconds', 30],
+                    ['1 Minute', 60],
+                    ['5 Minutes', 60 * 5],
+                    ['10 Minutes', 60 * 10],
+                    ['30 Minutes', 60 * 30]
+                  ],
+                  id: 'refresh-interval-selector',
+                  'data-controller': 'dropdown',
+                  'data-id': 'refresh-interval-selector',
+                  options: { selected: hash[:refresh_interval].to_i }
               end
             end
 

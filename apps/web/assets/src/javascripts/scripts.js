@@ -3,6 +3,7 @@ import { Application } from '@hotwired/stimulus';
 import '@hotwired/turbo';
 ////
 import DeleteController from './controllers/delete_controller';
+import DropdownController from './controllers/dropdown_controller';
 import EditController from './controllers/edit_controller';
 import LoadFeedController from './controllers/load_feed_controller';
 import ModalController from './controllers/modal_controller';
@@ -16,6 +17,7 @@ import SnackBar from './vendor/js-snackbar';
 
 window.Stimulus = Application.start();
 Stimulus.register('delete', DeleteController);
+Stimulus.register('dropdown', DropdownController);
 Stimulus.register('edit', EditController);
 Stimulus.register('load-feed', LoadFeedController);
 Stimulus.register('modal', ModalController);

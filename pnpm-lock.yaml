@@ -16,6 +16,7 @@ specifiers:
   sanitize.css: ^13.0.0
   sass: ^1.57.0
   sortablejs: ^1.15.0
+  vanilla-js-dropdown: ^2.2.0
 
 dependencies:
   '@hotwired/stimulus': 3.2.1
@@ -24,6 +25,7 @@ dependencies:
   gralig: 1.0.0
   sanitize.css: 13.0.0
   sortablejs: 1.15.0
+  vanilla-js-dropdown: 2.2.0
 
 devDependencies:
   '@rollup/plugin-commonjs': 23.0.7_rollup@3.7.5
@@ -629,6 +631,10 @@ packages:
     dependencies:
       is-number: 7.0.0
     dev: true
+
+  /vanilla-js-dropdown/2.2.0:
+    resolution: {integrity: sha512-pwXB6BR1Dw+YYY/ybf1EM1EhvbFpNBPCKhNWfnds2zPBz+GsSdNWAm/cnI6srECGPkXn9V3XUod8Hd1gpqd4Iw==}
+    dev: false
 
   /wrappy/1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
