@@ -5,23 +5,25 @@
   "license": "ISC",
   "engines": {
     "node": "~16.17.0",
-    "pnpm": "~7.18.0"
+    "pnpm": "~7.21.0"
   },
   "scripts": {
-    "build": "$npm_execpath run js:build && $npm_execpath run css:build",
-    "watch": "concurrently \"$npm_execpath run js:watch\" \"$npm_execpath run css:watch\"",
-    "js:build": "rollup --config rollup.config.cjs",
+    "pre-watch": "node ./bin/clean_assets.js",
+    "watch": "pnpm run pre-watch && concurrently --kill-others --names \"hanami server\",js,css --prefix-colors magenta,yellow,cyan \"bundle exec hanami server\" \"pnpm:js:watch\" \"pnpm:css:watch\"",
     "js:watch": "rollup --watch --config rollup.config.cjs",
-    "css:build": "$npm_execpath run css:transform && $npm_execpath run css:minify",
     "css:watch": "sass --no-source-map --load-path=node_modules --watch apps/web/assets/src/stylesheets/styles.scss apps/web/assets/dist/stylesheets/styles.css",
+    "pre-build": "node ./bin/clean_assets.js",
+    "build": "pnpm run pre-build && pnpm:js:build && pnpm:css:build",
+    "js:build": "rollup --config rollup.config.cjs",
+    "css:build": "pnpm:css:transform && pnpm:css:minify",
     "css:transform": "sass --load-path=node_modules apps/web/assets/src/stylesheets/styles.scss apps/web/assets/dist/stylesheets/styles.css",
-    "css:minify": "lightningcss --minify --nesting --targets '>= 0.25%' apps/web/assets/dist/stylesheets/styles.css -o apps/web/assets/dist/stylesheets/styles.css"
+    "css:minify": "csso -i apps/web/assets/dist/stylesheets/styles.css -o apps/web/assets/dist/stylesheets/styles.css"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.1",
     "@hotwired/turbo": "^7.2.4",
     "feather-icons": "^4.29.0",
-    "gralig": "^1.0.0",
+    "gralig": "^1.1.1",
     "sanitize.css": "^13.0.0",
     "sortablejs": "^1.15.0",
     "vanilla-js-dropdown": "^2.2.0"
@@ -31,10 +33,11 @@
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-replace": "^5.0.2",
-    "@rollup/plugin-terser": "^0.2.0",
-    "lightningcss-cli": "^1.17.1",
-    "pnpm": "^7.18.2",
-    "rollup": "^3.7.5",
-    "sass": "^1.57.0"
+    "@rollup/plugin-terser": "^0.2.1",
+    "concurrently": "^7.6.0",
+    "csso-cli": "^4.0.1",
+    "pnpm": "~7.21.0",
+    "rollup": "^3.9.0",
+    "sass": "^1.57.1"
   }
 }

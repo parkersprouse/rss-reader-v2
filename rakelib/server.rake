@@ -10,7 +10,7 @@ end
 namespace :server do
   task :build do
     if production
-      system('pnpm run build') || system('npm run build')
+      system('pnpm run build')
       system('bundle exec hanami assets precompile')
     end
   end
@@ -19,8 +19,7 @@ namespace :server do
     if production
       system('rackup config.ru -p $PORT')
     else
-      system('pnpm dlx concurrently "pnpm run watch" "bundle exec hanami server"') ||
-        system('npx concurrently "npm run watch" "bundle exec hanami server"')
+      system('pnpm run watch')
     end
   end
 end

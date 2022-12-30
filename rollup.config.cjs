@@ -11,7 +11,7 @@ module.exports = {
   output: {
     file: 'apps/web/assets/dist/javascripts/scripts.js',
     format: 'iife',
-    sourcemap: true,
+    sourcemap: production,
   },
   plugins: [
     nodeResolve(),
