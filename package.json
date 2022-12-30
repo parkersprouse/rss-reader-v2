@@ -4,18 +4,18 @@
   "description": "RSS Reader",
   "license": "ISC",
   "engines": {
-    "node": "~16.17.0",
+    "node": "~16",
     "pnpm": "~7.21.0"
   },
   "scripts": {
     "pre-watch": "node ./bin/clean_assets.js",
-    "watch": "pnpm run pre-watch && concurrently --kill-others --names \"hanami server\",js,css --prefix-colors magenta,yellow,cyan \"bundle exec hanami server\" \"pnpm:js:watch\" \"pnpm:css:watch\"",
+    "watch": "pnpm run pre-watch && concurrently --kill-others --names \"hanami server\",js,css --prefix-colors magenta,yellow,cyan \"bundle exec hanami server\" \"pnpm run js:watch\" \"pnpm run css:watch\"",
     "js:watch": "rollup --watch --config rollup.config.cjs",
     "css:watch": "sass --no-source-map --load-path=node_modules --watch apps/web/assets/src/stylesheets/styles.scss apps/web/assets/dist/stylesheets/styles.css",
     "pre-build": "node ./bin/clean_assets.js",
-    "build": "pnpm run pre-build && pnpm:js:build && pnpm:css:build",
+    "build": "pnpm run pre-build && pnpm run js:build && pnpm run css:build",
     "js:build": "rollup --config rollup.config.cjs",
-    "css:build": "pnpm:css:transform && pnpm:css:minify",
+    "css:build": "pnpm run css:transform && pnpm run css:minify",
     "css:transform": "sass --load-path=node_modules apps/web/assets/src/stylesheets/styles.scss apps/web/assets/dist/stylesheets/styles.css",
     "css:minify": "csso -i apps/web/assets/dist/stylesheets/styles.css -o apps/web/assets/dist/stylesheets/styles.css"
   },
