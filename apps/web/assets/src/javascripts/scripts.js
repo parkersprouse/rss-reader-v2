@@ -50,6 +50,31 @@ document.addEventListener('turbo:load', () => {
       timeout: 2500,
     });
   }
+
+  const scroll_btn = document.querySelector('#scroll-to-top');
+  if (scroll_btn) {
+    scroll_btn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth',
+      });
+    });
+
+    let last_position = 0;
+    let processing = false;
+    document.addEventListener('scroll', () => {
+      last_position = window.scrollY;
+      if (!processing) {
+        window.requestAnimationFrame(() => {
+          if (last_position > 0) scroll_btn.classList.remove('hide');
+          else scroll_btn.classList.add('hide');
+          processing = false;
+        });
+        processing = true;
+      }
+    });
+  }
 });
 
 document.addEventListener('turbo:submit-start', (e) => {
