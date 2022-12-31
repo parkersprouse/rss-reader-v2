@@ -5,6 +5,11 @@
       <h5 class='gra-modal-title' id='modal_title'>
         Profile
       </h5>
+      <span>
+        <a href='#' data-controller='modal' data-action='click->modal#close:prevent' data-id='account-modal'>
+          <i data-feather='x'></i>
+        </a>
+      </span>
     </div>
     <div class='gra-modal-body'>
       <%=
@@ -39,6 +44,8 @@
           end
         end
       %>
+
+      <div class='form-separator'></div>
 
       <%=
         form_for :profile, routes.settings_update_path, method: :patch, 'data-scrollfreeze': true do

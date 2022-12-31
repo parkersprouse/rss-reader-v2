@@ -12,7 +12,7 @@ specifiers:
   csso-cli: ^4.0.1
   feather-icons: ^4.29.0
   gralig: ^1.1.1
-  pnpm: ~7.21.0
+  pnpm: ^7.21.0
   rollup: ^3.9.0
   sanitize.css: ^13.0.0
   sass: ^1.57.1

@@ -58,21 +58,27 @@ textarea {
 @mixin modal-defaults {
   .gra-modal {
     max-width: 90%;
+    max-height: 90%;
 
     @include mobile-view() {
       top: 0;
       transform: translate(-50%, 2rem);
     }
 
+    .gra-modal-header {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+
+      .feather {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
     .gra-modal-body {
       display: flex;
       justify-content: space-evenly;
-
-      @include desktop-view() {
-        .gra-form-group {
-          margin: 0;
-        }
-      }
 
       @include mobile-view() {
         flex-wrap: wrap;
@@ -96,6 +102,12 @@ textarea {
     .gra-modal-body {
       align-items: center;
       align-content: center;
+
+      @include desktop-view() {
+        .gra-form-group {
+          margin: 0;
+        }
+      }
     }
   }
 }
@@ -104,10 +116,38 @@ textarea {
   @include modal-defaults;
 
   .gra-modal {
+    overflow: hidden;
+
     .gra-modal-body {
-      gap: 2rem;
+      gap: 3rem;
       align-items: flex-start;
       align-content: flex-start;
+      overflow: auto;
+      max-height: 80vh;
+
+      .form-separator {
+        align-self: stretch;
+        border-left: 1px solid #d9dcde;
+        margin-left: -1px;
+
+        @include mobile-view() {
+          border-bottom: 1px solid #d9dcde;
+          margin-bottom: -1px;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+body.dark {
+  #account-modal {
+    .gra-modal {
+      .gra-modal-body {
+        .form-separator {
+          border-color: #5f676d;
+        }
+      }
     }
   }
 }

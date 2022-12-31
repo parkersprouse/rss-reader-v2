@@ -9,6 +9,11 @@
       <h5 class='gra-modal-title' id='modal_title'>
         Preferences
       </h5>
+      <span>
+        <a href='#' data-controller='modal' data-action='click->modal#close:prevent' data-id='preferences-modal'>
+          <i data-feather='x'></i>
+        </a>
+      </span>
     </div>
     <%=
       form_for :preferences, routes.settings_update_path, method: :patch, 'data-scrollfreeze': true do
@@ -48,7 +53,6 @@
 
         div class: 'gra-modal-footer' do
           div class: 'gra-modal-actions' do
-            a 'Close', class: 'gra-btn gra-btn-clear', href: '#', 'data-controller': 'modal', 'data-action': 'click->modal#close:prevent', 'data-id': 'preferences-modal'
             submit class: 'gra-btn' do
               span 'Save'
               i 'data-feather': 'check', class: 'icon-right'
