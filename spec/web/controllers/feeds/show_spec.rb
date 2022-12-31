@@ -1,4 +1,4 @@
-RSpec.describe Web::Controllers::Feed::Show, type: :action do
+RSpec.describe Web::Controllers::Feeds::Show, type: :action do
   let(:action) { described_class.new }
   let(:params) { Hash[] }
 

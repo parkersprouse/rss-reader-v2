@@ -54,36 +54,60 @@ textarea {
   visibility: visible;
 }
 
-.gra-modal {
-  max-width: 90%;
 
-  @include mobile-view() {
-    top: 0;
-    transform: translate(-50%, 2rem);
-  }
-
-  .gra-modal-body {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    align-content: center;
-
-    @include desktop-view() {
-      .gra-form-group {
-        margin: 0;
-      }
-    }
+@mixin modal-defaults {
+  .gra-modal {
+    max-width: 90%;
 
     @include mobile-view() {
-      flex-wrap: wrap;
+      top: 0;
+      transform: translate(-50%, 2rem);
+    }
 
-      .gra-form-group {
-        width: 100%;
+    .gra-modal-body {
+      display: flex;
+      justify-content: space-evenly;
 
-        .js-Dropdown {
-          width: 100%;
+      @include desktop-view() {
+        .gra-form-group {
+          margin: 0;
         }
       }
+
+      @include mobile-view() {
+        flex-wrap: wrap;
+
+        .gra-form-group {
+          width: 100%;
+
+          .js-Dropdown {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+#preferences-modal {
+  @include modal-defaults;
+
+  .gra-modal {
+    .gra-modal-body {
+      align-items: center;
+      align-content: center;
+    }
+  }
+}
+
+#account-modal {
+  @include modal-defaults;
+
+  .gra-modal {
+    .gra-modal-body {
+      gap: 2rem;
+      align-items: flex-start;
+      align-content: flex-start;
     }
   }
 }

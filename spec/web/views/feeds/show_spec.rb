@@ -1,4 +1,4 @@
-RSpec.describe Web::Views::Feed::Show, type: :view do
+RSpec.describe Web::Views::Feeds::Show, type: :view do
   let(:exposures) { Hash[format: :html] }
   let(:template)  { Hanami::View::Template.new('apps/web/templates/feed/show.html.erb') }
   let(:view)      { described_class.new(template, exposures) }

@@ -25,6 +25,5 @@ namespace 'feeds' do
 end
 
 namespace 'settings' do
-  get '/', to: 'settings#show', as: :settings_show
   patch '/', to: 'settings#update', as: :settings_update
 end

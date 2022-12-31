@@ -60,17 +60,12 @@ module Web
             flash[:success_toast] = 'Profile successfully updated'
           end
 
-          redirect_to destination
+          redirect_to routes.feed_index_path
         rescue Hanami::Model::Error
           raise ProfileFormError, 'There was a problem updating your profile'
         end
 
         private
-
-        def destination
-          return routes.feed_index_path if context == 'preferences'
-          routes.settings_show_path
-        end
 
         def context
           params.get(:profile, :context) || params.get(:preferences, :context)
@@ -98,7 +93,7 @@ module Web
 
         def handle_error(exception)
           flash[:error_toast] = exception.message || 'There was a problem updating your profile'
-          redirect_to destination
+          redirect_to routes.feed_index_path
         end
       end
     end
