@@ -1,5 +1,9 @@
 ﻿@use './mixins/views' as *;
 
+.gra-link, a {
+  color: #5f676d;
+}
+
 .gra-alert {
   max-width: 100%;
   min-width: 100%;
@@ -141,6 +145,10 @@ textarea {
 }
 
 body.dark {
+  .gra-link, a {
+    color: #d9dcde;
+  }
+
   #account-modal {
     .gra-modal {
       .gra-modal-body {
