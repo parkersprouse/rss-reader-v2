@@ -16,7 +16,7 @@
     <%= javascript 'scripts', defer: true %>
     <%= favicon 'favicon.png', type: 'image/png' %>
   </head>
-  <body class='<%= hash[:theme] %>' style='overflow: hidden'>
+  <body class='<%= hash[:theme] %>'>
     <% if authenticated? %>
       <%= render partial: './navbar' %>
     <% end %>
@@ -46,8 +46,6 @@
     </footer>
 
     <script type='text/javascript'>
-      document.body.style.removeProperty('overflow');
-
       window.RssReader = {
         preferences: <%= prefs %>,
         <% if flash[:error_toast].present? %>
