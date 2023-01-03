@@ -1,4 +1,6 @@
-﻿[tooltip] {
+﻿@use './mixins/views' as *;
+
+[tooltip] {
   position: relative;
 
   &::after {
@@ -36,6 +38,13 @@
     transform: translateX(-50%);
     transition: opacity 0.1s;
     z-index: 99;
+  }
+
+  @include mobile-view() {
+    &::after,
+    &::before {
+      display: none;
+    }
   }
 
   &:hover {
