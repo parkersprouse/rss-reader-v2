@@ -22,9 +22,13 @@
     <% end %>
     <%= yield %>
 
-    <span id='scroll-to-top' class='hide'>
-      <i data-feather='arrow-up'></i>
-    </span>
+    <% if authenticated? %>
+      <span id='scroll-to-top' class='hide' tooltip='Back To Top' tooltip-position='left'>
+        <i data-feather='chevron-up'></i>
+      </span>
+
+      <%= render partial: './footer' %>
+    <% end %>
 
     <noscript>
       <div id='notice'>
@@ -38,12 +42,6 @@
         </div>
       </div>
     </noscript>
-
-    <footer>
-      <a href='mailto:parker@parkersprouse.me'>
-        parker@parkersprouse.me
-      </a>
-    </footer>
 
     <script type='text/javascript'>
       window.RssReader = {
