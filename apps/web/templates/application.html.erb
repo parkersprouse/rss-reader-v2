@@ -15,6 +15,17 @@
     <%= stylesheet 'styles' %>
     <%= javascript 'scripts', defer: true %>
     <%= favicon 'favicon.png', type: 'image/png' %>
+    <script type='text/javascript'>
+      window.RssReader = {
+        preferences: <%= prefs %>,
+        <% if flash[:error_toast].present? %>
+          errmsg: '<%= flash[:error_toast] %>',
+        <% end %>
+        <% if flash[:success_toast].present? %>
+          sucmsg: '<%= flash[:success_toast] %>',
+        <% end %>
+      };
+    </script>
   </head>
   <body class='<%= hash[:theme] %>'>
     <% if authenticated? %>
@@ -42,17 +53,5 @@
         </div>
       </div>
     </noscript>
-
-    <script type='text/javascript'>
-      window.RssReader = {
-        preferences: <%= prefs %>,
-        <% if flash[:error_toast].present? %>
-          errmsg: '<%= flash[:error_toast] %>',
-        <% end %>
-        <% if flash[:success_toast].present? %>
-          sucmsg: '<%= flash[:success_toast] %>',
-        <% end %>
-      };
-    </script>
   </body>
 </html>
