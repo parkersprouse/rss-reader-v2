@@ -41,9 +41,9 @@ module Web
       templates 'templates'
 
       assets do
-        javascript_compressor :builtin
+        # javascript_compressor :builtin
 
-        stylesheet_compressor :builtin
+        # stylesheet_compressor :builtin
 
         sources << [
           'assets/dist'
@@ -62,7 +62,7 @@ module Web
         base-uri 'self';
         default-src 'none';
         script-src 'self' 'unsafe-inline' rss-reader-analytics-production.up.railway.app;
-        connect-src 'self';
+        connect-src 'self' rss-reader-analytics-production.up.railway.app;
         img-src 'self' https: data:;
         style-src 'self' 'unsafe-inline' https:;
         font-src 'self' fonts.gstatic.com fonts.googleapis.com;

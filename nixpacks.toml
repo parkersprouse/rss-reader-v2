@@ -7,7 +7,7 @@ cmds = ['...']
 
 [phases.build]
 dependsOn = ['install']
-cmds = ['...', 'bundle install', 'pnpm i --frozen-lockfile', 'bundle exec hanami db migrate', 'pnpm run build', 'bundle exec hanami assets precompile']
+cmds = ['...', 'bundle exec hanami db migrate', 'pnpm run build', 'bundle exec hanami assets precompile']
 
 [start]
 dependsOn = ['build']
