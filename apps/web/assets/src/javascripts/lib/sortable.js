@@ -14,12 +14,9 @@ export default function() {
       handle: '.gra-card-title.hidden-mobile',
 
       onUpdate: (event) => {
-        const { children } = event.to;
-        console.log(children);
-        const list = Object.keys(children)
-          .map((ele) => ({ index: ele, id: children[ele].id }))
+        const list = Array.from(event.to.children)
           .filter((ele) => ele.id !== 'feeds-form')
-          .map((ele) => ele.id.replace('feed-', ''));
+          .map((ele, i) => ({ index: i, id: ele.id.replace('feed-', '') }));
 
         fetch('/feeds/update_sort_order', {
           method: 'POST',
