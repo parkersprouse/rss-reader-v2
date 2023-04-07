@@ -15,11 +15,11 @@ export default function() {
 
       onUpdate: (event) => {
         const { children } = event.to;
+        console.log(children);
         const list = Object.keys(children)
           .map((ele) => ({ index: ele, id: children[ele].id }))
           .filter((ele) => ele.id !== 'feeds-form')
-          .map((ele) => ele.id.replace('feed-', ''))
-          .map((ele) => ({ index: ele.index, id: ele.id }));
+          .map((ele) => ele.id.replace('feed-', ''));
 
         fetch('/feeds/update_sort_order', {
           method: 'POST',
