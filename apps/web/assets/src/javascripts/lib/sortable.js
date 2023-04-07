@@ -1,7 +1,6 @@
-﻿import Sortable from 'sortablejs/modular/sortable.core.esm.js';
+import Sortable from 'sortablejs/modular/sortable.core.esm.js';
 
 export default function() {
-  // const mobile = window.matchMedia('(max-width: 767px)').matches;
   const feed_list = document.querySelector('.feeds-list');
   if (!feed_list) return;
 
@@ -16,7 +15,10 @@ export default function() {
 
       onUpdate: (event) => {
         const { children } = event.to;
-        const list = Object.keys(children).map((ele) => ({ index: ele, id: children[ele].id }));
+        const list = Object.keys(children)
+          .filter((id) => id !== 'feeds-form')
+          .map((id) => id.replace('feed-', ''))
+          .map((ele) => ({ index: ele, id: children[ele].id }));
 
         fetch('/feeds/update_sort_order', {
           method: 'POST',
@@ -25,7 +27,7 @@ export default function() {
             'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
           },
           body: JSON.stringify({ body: list }),
-        }).catch(() => {});
+        }).catch(() => { });
       },
     },
   );

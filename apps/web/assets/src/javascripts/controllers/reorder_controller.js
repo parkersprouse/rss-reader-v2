@@ -1,4 +1,4 @@
-﻿import { Controller } from '@hotwired/stimulus';
+import { Controller } from '@hotwired/stimulus';
 import { freezeScrollOnNextRender } from '../lib/freeze_scroll';
 
 export default class ReorderController extends Controller {
@@ -54,8 +54,10 @@ export default class ReorderController extends Controller {
         'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
       },
       body: JSON.stringify({
-        body: arr.filter((id) => id !== 'feeds-form').map((id) => id.replace('feed-', '')).map((id, index) => ({ index, id })),
+        body: arr.filter((id) => id !== 'feeds-form')
+          .map((id) => id.replace('feed-', ''))
+          .map((id, index) => ({ index, id })),
       }),
-    }).catch(() => {});
+    }).catch(() => { });
   }
 };
