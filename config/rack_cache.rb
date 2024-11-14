@@ -44,7 +44,7 @@ class RackCache
         {
           # 60 seconds * 60 minutes * 24 hours * 365 days = 31536000 seconds = 1 year
           cache_control: 'private, max-age=31536000',
-          expires: (DateTime.now + 365).new_offset('GMT').strftime('%a, %d %b %Y %H:%M:%S GMT')
+          expires: 31536000 # (DateTime.now + 365).new_offset('GMT').strftime('%a, %d %b %Y %H:%M:%S GMT')
         }
     }
   end
