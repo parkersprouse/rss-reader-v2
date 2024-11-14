@@ -5,16 +5,23 @@
   "license": "ISC",
   "engines": {
     "node": "^20",
-    "pnpm": "^8"
+    "pnpm": "^9"
   },
   "scripts": {
-    "pre-watch": "node ./bin/clean_assets.js",
-    "watch": "pnpm run pre-watch && concurrently --kill-others --names \"hanami server\",js,css --prefix-colors magenta,yellow,cyan \"bundle exec hanami server\" \"pnpm run js:watch\" \"pnpm run css:watch\"",
+    "   === Entry Scripts ===": "",
+    "start": "pnpm watch",
+    "start_prod": "bundle exec hanami db migrate && pnpm run build && bundle exec hanami assets precompile && rackup config.ru -p 2300",
+    "   === Watch Scripts ===": "",
+    "prewatch": "node ./bin/clean_assets.js",
+    "watch": "concurrently --kill-others --names server,js,css --prefix-colors magenta,yellow,cyan \"bundle exec hanami server\" \"pnpm run js:watch\" \"pnpm run css:watch\"",
     "js:watch": "rollup --watch --config rollup.config.cjs",
     "css:watch": "sass --no-source-map --load-path=node_modules --watch apps/web/assets/src/stylesheets/styles.scss apps/web/assets/dist/stylesheets/styles.css",
-    "pre-build": "node ./bin/clean_assets.js",
-    "build": "pnpm run pre-build && pnpm run js:build && pnpm run css:build",
+    "   === Build Scripts ===": "",
+    "prebuild": "node ./bin/clean_assets.js",
+    "build": "pnpm run js:build && pnpm run css:build",
+    "   --- JS Build Scripts ---": "",
     "js:build": "rollup --config rollup.config.cjs",
+    "   --- CSS Build Scripts ---": "",
     "css:build": "pnpm run css:transform && pnpm run css:minify",
     "css:transform": "sass --load-path=node_modules apps/web/assets/src/stylesheets/styles.scss apps/web/assets/dist/stylesheets/styles.css",
     "css:minify": "csso -i apps/web/assets/dist/stylesheets/styles.css -o apps/web/assets/dist/stylesheets/styles.css"
@@ -22,21 +29,19 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo": "^7.3.0",
-    "feather-icons": "^4.29.1",
-    "gralig": "^1.1.1",
     "sanitize.css": "^13.0.0",
-    "sortablejs": "^1.15.2",
+    "sortablejs": "^1.15.3",
     "vanilla-js-dropdown": "^2.2.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^23.0.7",
     "@rollup/plugin-json": "^6.1.0",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-replace": "^5.0.5",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-replace": "^5.0.7",
     "@rollup/plugin-terser": "^0.2.1",
-    "concurrently": "^7.6.0",
+    "concurrently": "^8.2.2",
     "csso-cli": "^4.0.2",
-    "rollup": "^3.29.4",
-    "sass": "^1.69.7"
+    "rollup": "^3.29.5",
+    "sass": "^1.80.6"
   }
 }

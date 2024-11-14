@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 require 'hanami/action/cache'
-require 'hanami/helpers'
 require 'hanami/assets'
+require 'hanami/helpers'
 require 'rack/protection'
 require './apps/web/mixins/action_scaffold'
 require './apps/web/mixins/check_authentication'
+require './apps/web/mixins/icon_library'
 require './apps/web/mixins/turbo_redirect'
 
 module Web
@@ -41,10 +42,6 @@ module Web
       templates 'templates'
 
       assets do
-        # javascript_compressor :builtin
-
-        # stylesheet_compressor :builtin
-
         sources << [
           'assets/dist'
         ]
@@ -57,19 +54,19 @@ module Web
       security.x_xss_protection '1; mode=block'
 
       security.content_security_policy %{
+        base-uri 'self';
+        child-src 'self';
+        connect-src 'self';
+        default-src 'none';
+        font-src 'self' fonts.bunny.net;
         form-action 'self';
         frame-ancestors 'self';
-        base-uri 'self';
-        default-src 'none';
-        script-src 'self' 'unsafe-inline' rss-reader-analytics-production.up.railway.app;
-        connect-src 'self' rss-reader-analytics-production.up.railway.app;
-        img-src 'self' https: data:;
-        style-src 'self' 'unsafe-inline' https:;
-        font-src 'self' fonts.gstatic.com fonts.googleapis.com;
-        object-src 'none';
-        child-src 'self';
         frame-src 'self';
-        media-src 'self'
+        img-src 'self' https: data:;
+        media-src 'self';
+        object-src 'none';
+        script-src 'self' 'unsafe-inline' 'unsafe-eval';
+        style-src 'self' 'unsafe-inline' fonts.bunny.net
       }
 
       controller.prepare do
@@ -89,6 +86,14 @@ module Web
         include Hanami::Helpers
         include Web::Assets::Helpers
         include Web::Helpers::PathHelper
+        include IconLibrary
+      end
+    end
+
+    configure :development do
+      assets do
+        fingerprint true
+        subresource_integrity :sha256
       end
     end
 

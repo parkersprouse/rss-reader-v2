@@ -2,22 +2,22 @@
   <ul class='gra-nav'>
     <li class='gra-nav-item'>
       <a class='gra-nav-link' href='#' data-controller='refresh-all' data-action='click->refresh-all#action:prevent'>
-        <i data-feather='refresh-cw'></i>
+        <%= icons[:refresh] %>
       </a>
     </li>
     <li class='gra-nav-item'>
       <a class='gra-nav-link' href='#' data-controller='modal' data-action='click->modal#open:prevent' data-id='preferences-modal'>
-        <i data-feather='settings'></i>
+        <%= icons[:settings] %>
       </a>
     </li>
     <li class='gra-nav-item'>
       <a class='gra-nav-link' data-controller='modal' data-action='click->modal#open:prevent' data-id='account-modal'>
-        <i data-feather='user'></i>
+        <%= icons[:user] %>
       </a>
     </li>
     <li class='gra-nav-item'>
       <a class='gra-nav-link' href='<%= routes.sign_out_path %>'>
-        <i data-feather='log-out'></i>
+        <%= icons[:sign_out] %>
       </a>
     </li>
   </ul>

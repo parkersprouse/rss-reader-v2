@@ -1,7 +1,6 @@
-﻿import feather from 'feather-icons';
-import { Application } from '@hotwired/stimulus';
+﻿import { Application } from '@hotwired/stimulus';
 import '@hotwired/turbo';
-////
+
 import DeleteController from './controllers/delete_controller';
 import DropdownController from './controllers/dropdown_controller';
 import EditController from './controllers/edit_controller';
@@ -10,7 +9,7 @@ import ModalController from './controllers/modal_controller';
 import RefreshController from './controllers/refresh_controller';
 import RefreshAllController from './controllers/refresh_all_controller';
 import ReorderController from './controllers/reorder_controller';
-////
+
 import { freezeScrollOnNextRender } from './lib/freeze_scroll';
 import sortable from './lib/sortable';
 import SnackBar from './vendor/js-snackbar';
@@ -28,7 +27,6 @@ Stimulus.register('reorder', ReorderController);
 document.addEventListener('turbo:load', () => {
   scrollToTop();
 
-  feather.replace();
   window.Sortable = sortable();
 
   if (window.RssReader?.sucmsg) {

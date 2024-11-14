@@ -24,12 +24,27 @@ class RackCache
   private
 
   def patterns
+    return dev_cache_control if Hanami.env?(:development)
+    prod_cache_control
+  end
+
+  def dev_cache_control
     {
       /\/assets\// =>
         {
-          # 60 seconds * 60 minutes * 24 hours * 365 days = 1 year
+          cache_control: 'no-cache, max-age=0',
+          expires: 0
+        }
+    }
+  end
+
+  def prod_cache_control
+    {
+      /\/assets\// =>
+        {
+          # 60 seconds * 60 minutes * 24 hours * 365 days = 31536000 seconds = 1 year
           cache_control: 'private, max-age=31536000',
-          expires: 31536000
+          expires: (DateTime.now + 365).new_offset('GMT').strftime('%a, %d %b %Y %H:%M:%S GMT')
         }
     }
   end

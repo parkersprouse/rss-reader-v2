@@ -11,7 +11,7 @@
       </h5>
       <span>
         <a href='#' data-controller='modal' data-action='click->modal#close:prevent' data-id='preferences-modal'>
-          <i data-feather='x'></i>
+          <span class='icon-outer'><%= icons[:x] %></span>
         </a>
       </span>
     </div>
@@ -55,7 +55,7 @@
           div class: 'gra-modal-actions' do
             submit class: 'gra-btn' do
               span 'Save'
-              i 'data-feather': 'check', class: 'icon-right'
+              span class: 'icon-outer' do icons[:check] end
             end
           end
         end

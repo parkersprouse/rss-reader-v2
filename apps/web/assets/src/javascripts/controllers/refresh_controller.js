@@ -1,5 +1,4 @@
-﻿import feather from 'feather-icons';
-import { Controller } from '@hotwired/stimulus';
+﻿import { Controller } from '@hotwired/stimulus';
 import { freezeScrollOnNextRender } from '../lib/freeze_scroll';
 
 export default class RefreshController extends Controller {
@@ -29,7 +28,6 @@ export default class RefreshController extends Controller {
       .then((html) => {
         window.sessionStorage.setItem(id, JSON.stringify({ body: html, exp: Date.now() + (1000 * 60 * 5) }));
         feed.innerHTML = html;
-        feather.replace();
       })
       .catch(() => {
         feed.innerHTML = `

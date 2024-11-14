@@ -1,0 +1,228 @@
+﻿@use './mixins/views' as *;
+
+a, .gra-link {
+  color: var(--color-link);
+  font-weight: normal;
+}
+
+.gra-btn {
+  &.gra-btn-outline {
+    &:hover {
+      background-color: var(--btn-color-bg-hover);
+    }
+  }
+}
+
+.gra-alert {
+  align-items: center;
+  display: flex;
+  flex-wrap: nowrap;
+  font-size: 0.9em;
+  gap: 1rem;
+  height: initial;
+  justify-content: center;
+  line-height: initial;
+  max-width: 100%;
+  min-width: 100%;
+  padding-bottom: 0.75rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 0.75rem;
+  width: 100%;
+
+  .alert-icon {
+    flex-grow: 0;
+    flex-shrink: 1;
+  }
+
+  .alert-content {
+    flex-grow: 1;
+    flex-shrink: 1;
+    text-align: center;
+  }
+
+  &.green {
+    color: var(--alert-color-text);
+  }
+}
+
+.gra-card {
+  background-color: var(--color-card-bg);
+  border-color: var(--color-border);
+
+  .gra-card-title {
+    border-color: var(--color-border);
+  }
+}
+
+.gra-list {
+  .gra-list-item {
+    border-color: var(--color-border) !important;
+  }
+}
+
+.gra-form-group:last-child {
+  margin-bottom: 0;
+}
+
+input[type='email'],
+input[type='number'],
+input[type='password'],
+input[type='search'],
+input[type='tel'],
+input[type='text'],
+input[type='url'],
+select,
+textarea {
+  color: var(--color-text);
+  font-size: 1em;
+  font-weight: normal;
+}
+
+.gra-modal-wrapper.open {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+@mixin modal-defaults {
+  .gra-modal {
+    background-color: var(--color-card-bg);
+    max-height: 90%;
+    max-width: 90%;
+
+    @include mobile-view() {
+      top: 0;
+      transform: translate(-50%, 2rem);
+    }
+
+    .gra-modal-header {
+      border-color: var(--color-border);
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+
+      .icon {
+        height: 20px;
+        width: 20px;
+      }
+    }
+
+    .gra-modal-body {
+      display: flex;
+      justify-content: space-evenly;
+
+      @include mobile-view() {
+        flex-wrap: wrap;
+
+        .gra-form-group {
+          width: 100%;
+
+          .js-Dropdown {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .gra-modal-footer {
+      border-color: var(--color-border);
+    }
+  }
+}
+
+#preferences-modal {
+  @include modal-defaults;
+
+  .gra-modal {
+    .gra-modal-body {
+      align-items: center;
+      align-content: center;
+
+      @include desktop-view() {
+        .gra-form-group {
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+#account-modal {
+  @include modal-defaults;
+
+  .gra-modal {
+    overflow: hidden;
+
+    .gra-modal-body {
+      gap: 3rem;
+      align-items: flex-start;
+      align-content: flex-start;
+      overflow: auto;
+      max-height: 80vh;
+
+      .form-separator {
+        align-self: stretch;
+        border-left: 1px solid var(--color-border);
+        margin-left: -1px;
+
+        @include mobile-view() {
+          border-bottom: 1px solid var(--color-border);
+          margin-bottom: -1px;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+// Dark mode adjustments - duplicated even though they're CSS vars due to CSS specificity override
+.dark {
+  a, .gra-link {
+    color: var(--color-link);
+  }
+
+  .gra-alert {
+    &.green {
+      color: var(--alert-color-text);
+    }
+  }
+
+  .gra-card {
+    background-color: var(--color-card-bg);
+    border-color: var(--color-border);
+
+    .gra-card-title {
+      border-color: var(--color-border);
+    }
+  }
+
+  .gra-list {
+    .gra-list-item {
+      border-color: var(--color-border) !important;
+      text-wrap: balance;
+    }
+  }
+
+  .gra-modal {
+    background-color: var(--color-card-bg);
+
+    .gra-modal-header,
+    .gra-modal-footer {
+      border-color: var(--color-border);
+    }
+  }
+
+  input[type='email'],
+  input[type='number'],
+  input[type='password'],
+  input[type='search'],
+  input[type='tel'],
+  input[type='text'],
+  input[type='url'],
+  select,
+  textarea {
+    background-color: var(--color-page-bg);
+    color: var(--color-text);
+  }
+}

@@ -1,5 +1,4 @@
-﻿import feather from 'feather-icons';
-import { Controller } from '@hotwired/stimulus';
+﻿import { Controller } from '@hotwired/stimulus';
 
 export default class LoadFeedController extends Controller {
   connect() {
@@ -12,7 +11,6 @@ export default class LoadFeedController extends Controller {
     const stored_feed = JSON.parse(window.sessionStorage.getItem(id));
     if (stored_feed && (stored_feed.exp - Date.now() > 0)) {
       this.element.innerHTML = stored_feed.body;
-      feather.replace();
       return;
     }
 
@@ -21,7 +19,6 @@ export default class LoadFeedController extends Controller {
       .then((html) => {
         window.sessionStorage.setItem(id, JSON.stringify({ body: html, exp: Date.now() + (1000 * 60 * 5) }));
         this.element.innerHTML = html;
-        feather.replace();
       })
       .catch(() => {
         this.element.innerHTML = `

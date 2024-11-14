@@ -3,38 +3,27 @@
   prefs = Json.build(hash)
 %>
 <!DOCTYPE html>
-<html lang='en-US'>
+<html lang='en-US' class='<%= hash[:theme] %>'>
   <head>
     <title>RSS Reader</title>
-    <meta name='description' content='Collect all of your favorite RSS feeds in one easy-to-use place'>
+    <meta name='description' content='Collect all of your favorite RSS feeds in one easy-to-use, minimalist interface'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <meta name='turbo-cache-control' content='no-preview'>
     <%= csrf_meta_tags %>
     <%= favicon 'favicon.png', type: 'image/png' %>
-    <link href='https://fonts.googleapis.com' rel='preconnect'>
-    <link href='https://fonts.gstatic.com' rel='preconnect' crossorigin>
+    <link href='https://fonts.bunny.net' rel='preconnect'>
     <%= stylesheet 'styles' %>
-    <script async defer data-website-id='45a84466-77f8-4c96-a2a1-514b999bcd83' src='https://rss-reader-analytics-production.up.railway.app/umami.js'></script>
-    <%= javascript 'scripts', defer: true %>
+    <%= javascript 'scripts' %>
   </head>
-  <body class='<%= hash[:theme] %>'>
+  <body>
     <% if authenticated? %>
       <%= render partial: './navbar' %>
-    <% end %>
-    <%= yield %>
-
-    <% if authenticated? %>
-      <span id='scroll-to-top' class='hide' tooltip='Back To Top' tooltip-position='left'>
-        <i data-feather='chevron-up'></i>
-      </span>
-
-      <%= render partial: './footer' %>
     <% end %>
 
     <noscript>
       <div id='notice'>
         <div>
-          <div>JavaScript is required for this app to run.</div>
+          <div>JavaScript is required for this website to function.</div>
           <div>
             <a href='https://www.enable-javascript.com/' target='_blank' rel='noreferrer noopener'>
               Please enable it to continue.
@@ -43,6 +32,16 @@
         </div>
       </div>
     </noscript>
+
+    <%= yield %>
+
+    <% if authenticated? %>
+      <span id='scroll-to-top' class='hide' tooltip='Back To Top' tooltip-position='left'>
+        <%= icons[:caret_up] %>
+      </span>
+
+      <%= render partial: './footer' %>
+    <% end %>
 
     <script type='text/javascript'>
       window.RssReader = {

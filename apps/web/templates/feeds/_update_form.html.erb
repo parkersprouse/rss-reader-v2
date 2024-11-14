@@ -14,11 +14,11 @@
 
     div class: 'gra-form-actions' do
       submit class: 'gra-btn' do
-        span 'Update'
-        i '', 'data-feather': 'check-circle', class: 'icon-right'
+        span 'Save'
+        span class: 'icon-outer' do icons[:check] end
       end
       a class: 'gra-btn gra-btn-outline', 'data-controller': 'edit', 'data-action': 'click->edit#showPanel', 'data-id': parsed_feed[:id] do
-        i '', 'data-feather': 'arrow-left', class: 'icon-left'
+        span class: 'icon-outer' do icons[:arrow_left] end
         span 'Back'
       end
     end

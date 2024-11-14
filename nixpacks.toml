@@ -1,9 +1,9 @@
 [phases.setup]
-cmds = ['...', 'npm install -g corepack', 'corepack enable', 'corepack prepare pnpm@8.14.1 --activate']
+cmds = ['...', 'npm install -g pnpm@9']
 
 [phases.install]
 dependsOn = ['setup']
-cmds = ['...']
+cmds = ['...', 'pnpm install']
 
 [phases.build]
 dependsOn = ['install']

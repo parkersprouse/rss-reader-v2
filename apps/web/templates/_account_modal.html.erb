@@ -7,7 +7,7 @@
       </h5>
       <span>
         <a href='#' data-controller='modal' data-action='click->modal#close:prevent' data-id='account-modal'>
-          <i data-feather='x'></i>
+          <span class='icon-outer'><%= icons[:x] %></span>
         </a>
       </span>
     </div>
@@ -30,15 +30,15 @@
 
             div class: 'gra-form-group' do
               label 'Current Password', for: 'profile_current_password'
-              span class: 'prefixed-input prefixed-input--password' do
+              span class: 'prefixed-input prefixed-input--password-current' do
                 password_field :current_password, id: 'profile_current_password'
               end
             end
 
             div class: 'gra-form-group gra-center-text' do
               submit class: 'gra-btn gra-width-100' do
-                span 'Update Profile'
-                i '', 'data-feather': 'user-check', class: 'icon-right'
+                span 'Save'
+                span class: 'icon-outer' do icons[:user_check] end
               end
             end
           end
@@ -65,22 +65,22 @@
 
             div class: 'gra-form-group' do
               label 'Confirm New Password', for: :new_password_confirmation
-              span class: 'prefixed-input prefixed-input--password' do
+              span class: 'prefixed-input prefixed-input--password-confirm' do
                 password_field :new_password_confirmation
               end
             end
 
             div class: 'gra-form-group' do
               label 'Current Password', for: 'pw_current_password'
-              span class: 'prefixed-input prefixed-input--password' do
+              span class: 'prefixed-input prefixed-input--password-current' do
                 password_field :current_password, id: 'pw_current_password'
               end
             end
 
             div class: 'gra-form-group gra-center-text' do
               submit class: 'gra-btn gra-width-100' do
-                span 'Change Password'
-                i '', 'data-feather': 'key', class: 'icon-right'
+                span 'Save'
+                span class: 'icon-outer' do icons[:check] end
               end
             end
           end
