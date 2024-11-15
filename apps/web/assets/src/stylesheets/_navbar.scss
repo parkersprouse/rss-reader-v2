@@ -1,11 +1,13 @@
 ﻿@use './mixins/views' as *;
 
 .navbar {
-  margin-left: 4rem;
-  margin-right: 4rem;
-  padding-bottom: 2rem;
-  padding-top: 2rem;
+  margin: 0 4rem;
+  padding: 2rem 0;
   text-align: center;
+
+  @include mobile-view() {
+    padding-bottom: 0;
+  }
 
   .gra-nav {
     height: 4rem;

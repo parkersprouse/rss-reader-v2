@@ -46,7 +46,7 @@ module Web
             output[:entries] = input.entries
           rescue => e
             output[:title] = 'Failed to parse feed'
-            output[:error] = "Feed at source \"#{output[:source]}\" failed to load"
+            output[:error] = "Feed from source \"#{output[:source]}\" failed to load"
           end
 
           output

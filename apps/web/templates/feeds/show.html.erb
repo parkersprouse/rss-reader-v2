@@ -1,20 +1,25 @@
 <div class='gra-card'>
   <div class='gra-card-content'>
     <h5 class='gra-card-title hidden-mobile'>
-      <%= parsed_feed[:title] %>
-      <span tooltip='refresh' data-controller='refresh' data-action='click->refresh#action' data-id='<%= parsed_feed[:id] %>'>
-        <span class='icon-outer'><%= icons[:refresh] %></span>
+      <span class='feed-title'>
+        <%= parsed_feed[:title] %>
       </span>
-      <span tooltip='edit' data-controller='edit' data-action='click->edit#showEdit' data-id='<%= parsed_feed[:id] %>'>
-        <span class='icon-outer'><%= icons[:edit] %></span>
-      </span>
-      <span tooltip='delete' data-controller='delete' data-action='click->delete#show' data-id='<%= parsed_feed[:id] %>'>
-        <span class='icon-outer'><%= icons[:trash] %></span>
-      </span>
+
+      <div class='feed-actions'>
+        <span tooltip='refresh' data-controller='refresh' data-action='click->refresh#action' data-id='<%= parsed_feed[:id] %>'>
+          <span class='icon-outer'><%= icons[:refresh] %></span>
+        </span>
+        <span tooltip='edit' data-controller='edit' data-action='click->edit#showEdit' data-id='<%= parsed_feed[:id] %>'>
+          <span class='icon-outer'><%= icons[:edit] %></span>
+        </span>
+        <span tooltip='delete' data-controller='delete' data-action='click->delete#show' data-id='<%= parsed_feed[:id] %>'>
+          <span class='icon-outer'><%= icons[:trash] %></span>
+        </span>
+      </div>
     </h5>
 
     <h5 class='gra-card-title visible-mobile'>
-      <span class='gra-block'>
+      <span class='feed-title gra-block'>
         <%= parsed_feed[:title] %>
       </span>
 

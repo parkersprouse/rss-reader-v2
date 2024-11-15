@@ -1,11 +1,11 @@
 :root {
   --color-border: #d9d9df;
-  --color-border-hover: #babbc5;
   --color-border-focus: #1c2023;
+  --color-border-hover: #babbc5;
   --color-card-bg: #ffffff;
   --color-link: #1c2023;
-  --color-link-hover: #4397cf;
   --color-link-disabled: #babbc5;
+  --color-link-hover: #4397cf;
   --color-page-bg: #f9f9fb;
   --color-text: #1c2023;
   --color-text-muted: #3a4248;
@@ -18,21 +18,21 @@
   --btn-color-text-hover: #1c2023;
   --btn-color-text: #1c2023;
 
-  --tooltip-color-bg: black;
+  --tooltip-color-bg: #1c2023;
   --tooltip-color-text: #edeef0;
 }
 
 .dark {
   --color-border: #2f3135;
-  --color-border-hover: #44484e;
   --color-border-focus: #777b83;
+  --color-border-hover: #44484e;
   --color-card-bg: #18191b;
   --color-link: #edeef0;
-  --color-link-hover: #2860a8;
   --color-link-disabled: #777b83;
+  --color-link-hover: #4090c6;
   --color-page-bg: #111113;
-  --color-text-muted: #c6c9cf;
   --color-text: #edeef0;
+  --color-text-muted: #c6c9cf;
 
   --alert-color-bg: #18191b;
   --alert-color-text: #c6c9cf;
@@ -41,4 +41,7 @@
   --btn-color-bg-hover: #3c3f44;
   --btn-color-text: #b1b4ba;
   --btn-color-text-hover: #b1b4ba;
+
+  --tooltip-color-bg: #44484e;
+  --tooltip-color-text: #edeef0;
 }
