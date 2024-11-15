@@ -4,8 +4,20 @@ legend, label {
 
 fieldset {
   legend {
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 2rem;
+    padding-bottom: 0.5rem;
     width: 100%;
+
+    h1, h2, h3, h4, h5, h6, .gra-heading {
+      margin: 0;
+    }
   }
+}
+
+button.js-Dropdown-title {
+  justify-content: flex-start;
+  text-align: left;
 }
 
 .prefixed-input {

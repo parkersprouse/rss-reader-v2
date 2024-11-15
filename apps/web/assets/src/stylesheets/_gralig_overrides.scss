@@ -5,14 +5,6 @@ a, .gra-link {
   font-weight: normal;
 }
 
-.gra-btn {
-  &.gra-btn-outline {
-    &:hover {
-      background-color: var(--btn-color-bg-hover);
-    }
-  }
-}
-
 .gra-alert {
   align-items: center;
   display: flex;
@@ -41,8 +33,24 @@ a, .gra-link {
     text-align: center;
   }
 
+  &.blue {
+    background-color: var(--alert-info-color-bg);
+    color: var(--alert-info-color-text);
+  }
+
   &.green {
-    color: var(--alert-color-text);
+    background-color: var(--alert-success-color-bg);
+    color: var(--alert-success-color-text);
+  }
+
+  &.red {
+    background-color: var(--alert-error-color-bg);
+    color: var(--alert-error-color-text);
+  }
+
+  &.yellow {
+    background-color: var(--alert-warning-color-bg);
+    color: var(--alert-warning-color-text);
   }
 }
 
@@ -90,6 +98,7 @@ textarea {
     background-color: var(--color-card-bg);
     max-height: 90%;
     max-width: 90%;
+    width: max-content;
 
     @include mobile-view() {
       top: 0;
@@ -111,9 +120,15 @@ textarea {
     .gra-modal-body {
       display: flex;
       justify-content: space-evenly;
+      gap: 5rem;
+
+      .gra-form-group {
+        margin: 0;
+      }
 
       @include mobile-view() {
         flex-wrap: wrap;
+        gap: 3rem;
 
         .gra-form-group {
           width: 100%;
@@ -137,13 +152,6 @@ textarea {
   .gra-modal {
     .gra-modal-body {
       align-items: center;
-      align-content: center;
-
-      @include desktop-view() {
-        .gra-form-group {
-          margin: 0;
-        }
-      }
     }
   }
 }
@@ -155,11 +163,17 @@ textarea {
     overflow: hidden;
 
     .gra-modal-body {
-      gap: 3rem;
       align-items: flex-start;
-      align-content: flex-start;
       overflow: auto;
       max-height: 80vh;
+
+      fieldset {
+        align-items: center;
+        display: flex;
+        flex-flow: column nowrap;
+        gap: 2rem;
+        justify-content: center;
+      }
 
       .form-separator {
         align-self: stretch;
@@ -167,8 +181,8 @@ textarea {
         margin-left: -1px;
 
         @include mobile-view() {
-          border-bottom: 1px solid var(--color-border);
-          margin-bottom: -1px;
+          border-bottom: 2px solid var(--color-border);
+          margin-bottom: -2px;
           width: 100%;
         }
       }

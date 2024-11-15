@@ -1428,7 +1428,7 @@ p, .gra-p {
   align-items: center;
   background-color: var(--btn-color-bg);
   border-radius: .2rem;
-  border: 0;
+  border: 1px solid var(--btn-color-border);
   color: var(--btn-color-text);
   cursor: pointer;
   display: inline-flex;
@@ -1450,12 +1450,13 @@ p, .gra-p {
 .gra-btn:not([disabled]):hover, .gra-btn:link:not([disabled]):hover, .gra-btn:visited:not([disabled]):hover {
   color: var(--btn-color-text-hover);
   background-color: var(--btn-color-bg-hover);
+  border-color: var(--btn-color-border-hover);
 }
 
 .gra-btn:not([disabled]):focus, .gra-btn:link:not([disabled]):focus, .gra-btn:visited:not([disabled]):focus {
   color: var(--btn-color-text-hover);
   background-color: var(--btn-color-bg-hover);
-  outline: none;
+  border-color: var(--btn-color-border-hover);
 }
 
 .gra-btn.disabled, .gra-btn[disabled], .gra-btn:link.disabled, .gra-btn:link[disabled], .gra-btn:visited.disabled, .gra-btn:visited[disabled] {
@@ -1464,15 +1465,15 @@ p, .gra-p {
 }
 
 .gra-btn.gra-btn-outline, .gra-btn:link.gra-btn-outline, .gra-btn:visited.gra-btn-outline {
-  color: var(--btn-color-text);
-  background-color: transparent;
-  border: 1px solid var(--btn-color-bg-hover);
+  color: var(--btn-outline-color-text);
+  background-color: var(--btn-outline-color-bg);
+  border-color: var(--btn-outline-color-border);
 }
 
 .gra-btn.gra-btn-outline:hover, .gra-btn:link.gra-btn-outline:hover, .gra-btn:visited.gra-btn-outline:hover {
-  color: var(--btn-color-text-hover);
-  background-color: transparent;
-  border-color: var(--btn-color-bg-hover);
+  color: var(--btn-outline-color-text-hover);
+  background-color: var(--btn-outline-color-bg-hover);
+  border-color: var(--btn-outline-color-border-hover);
 }
 
 .gra-btn.gra-btn-blue, .gra-btn:link.gra-btn-blue, .gra-btn:visited.gra-btn-blue {
@@ -2323,19 +2324,20 @@ legend {
   text-align: center;
 }
 
-@media screen and (min--moz-device-pixel-ratio: 0) {
-  fieldset {
-    padding-top: 3.2rem;
-    position: relative;
-  }
-
-  fieldset > legend {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-}
+// I don't know why this was configured this way, but it's only been causing trouble
+// @media screen and (min--moz-device-pixel-ratio: 0) {
+//   fieldset {
+//     padding-top: 3.2rem;
+//     position: relative;
+//   }
+//
+//   fieldset > legend {
+//     position: absolute;
+//     top: 0;
+//     left: 50%;
+//     transform: translateX(-50%);
+//   }
+// }
 
 input[type="email"], input[type="number"], input[type="password"], input[type="search"], input[type="tel"], input[type="text"], input[type="url"], textarea, select {
   width: 100%;
@@ -2437,8 +2439,9 @@ input[type="search"] {
 .gra-search-input:before {
   width: 1.6rem;
   height: 1.6rem;
-  content: "";
-  background-image: url("data:image/svg+xml,%3Csvg width='14' height='15' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9.643 6.107a3.755 3.755 0 01-3.75 3.75 3.755 3.755 0 01-3.75-3.75 3.755 3.755 0 013.75-3.75 3.755 3.755 0 013.75 3.75zm4.286 6.965c0-.285-.118-.561-.31-.754l-2.871-2.87A5.89 5.89 0 005.893.214 5.89 5.89 0 000 6.106a5.89 5.89 0 009.233 4.855l2.87 2.863c.193.2.47.318.754.318.586 0 1.072-.486 1.072-1.072z' fill='%236F7880'/%3E%3C/svg%3E");
+  content: '';
+  // background-image: url("data:image/svg+xml,%3Csvg width='14' height='15' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9.643 6.107a3.755 3.755 0 01-3.75 3.75 3.755 3.755 0 01-3.75-3.75 3.755 3.755 0 013.75-3.75 3.755 3.755 0 013.75 3.75zm4.286 6.965c0-.285-.118-.561-.31-.754l-2.871-2.87A5.89 5.89 0 005.893.214 5.89 5.89 0 000 6.106a5.89 5.89 0 009.233 4.855l2.87 2.863c.193.2.47.318.754.318.586 0 1.072-.486 1.072-1.072z' fill='%236F7880'/%3E%3C/svg%3E");
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0iIzFjMjAyMyIgdmlld0JveD0iMCAwIDI1NiAyNTYiPjxwYXRoIGQ9Ik0yMjguMjQsMjE5Ljc2bC01MS4zOC01MS4zOGE4Ni4xNSw4Ni4xNSwwLDEsMC04LjQ4LDguNDhsNTEuMzgsNTEuMzhhNiw2LDAsMCwwLDguNDgtOC40OFpNMzgsMTEyYTc0LDc0LDAsMSwxLDc0LDc0QTc0LjA5LDc0LjA5LDAsMCwxLDM4LDExMloiPjwvcGF0aD48L3N2Zz4=');
   background-repeat: no-repeat;
   background-size: cover;
   margin-top: -8px;
@@ -2449,8 +2452,12 @@ input[type="search"] {
   left: 1.6rem;
 }
 
+.dark .gra-search-input:before {
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0iI2VkZWVmMCIgdmlld0JveD0iMCAwIDI1NiAyNTYiPjxwYXRoIGQ9Ik0yMjguMjQsMjE5Ljc2bC01MS4zOC01MS4zOGE4Ni4xNSw4Ni4xNSwwLDEsMC04LjQ4LDguNDhsNTEuMzgsNTEuMzhhNiw2LDAsMCwwLDguNDgtOC40OFpNMzgsMTEyYTc0LDc0LDAsMSwxLDc0LDc0QTc0LjA5LDc0LjA5LDAsMCwxLDM4LDExMloiPjwvcGF0aD48L3N2Zz4=');
+}
+
 .gra-form-group {
-  margin-bottom: 2.4rem;
+  margin-bottom: 2rem;
 }
 
 .gra-form-actions .gra-btn:not(:first-child) {

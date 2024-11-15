@@ -1,13 +1,13 @@
-<div class='content-container centered-container gra-flex gra-flex-jc-c gra-height-100'>
+<div class='auth-form-container centered-container gra-flex gra-flex-jc-c gra-height-100'>
   <div class='gra-card'>
     <div class='gra-card-content'>
       <div class='gra-card-body'>
         <%=
           form_for :auth, routes.process_create_account_path, 'data-scrollfreeze': true do
             fieldset do
-              legend do
-                h4 'Create Account', class: 'gra-heading'
-              end
+              # legend do
+              #   h4 'Create Account', class: 'gra-heading'
+              # end
 
               if flash[:error_alert].present?
                 div class: 'gra-mg-bottom-m gra-alert red', role: 'alert' do
@@ -38,15 +38,15 @@
                 end
               end
 
-              div class: 'gra-form-group gra-center-text' do
+              div class: 'gra-form-group gra-center-text auth-form-actions' do
                 submit class: 'gra-btn gra-width-100' do
-                  span 'Submit'
+                  span 'Create Account'
                   span class: 'icon-outer' do icons[:user_plus] end
                 end
-              end
 
-              div class: 'gra-form-group auth-form-links' do
-                a 'Sign In', href: routes.sign_in_path
+                a href: routes.sign_in_path, class: 'gra-btn gra-btn-outline gra-btn-small gra-width-100' do
+                  'Sign In'
+                end
               end
             end
           end

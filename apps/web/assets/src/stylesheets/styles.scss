@@ -45,6 +45,8 @@ html, body {
   align-items: center;
   display: inline-flex;
   gap: 0.75rem;
+  justify-content: center;
+  text-align: center;
 }
 
 #notice {
@@ -102,10 +104,10 @@ html, body {
   }
 }
 
-.content-container {
+.auth-form-container {
   margin: auto;
-  padding: 0 4rem 4rem 4rem;
-  width: 30em;
+  padding: 2rem 0;
+  width: 25em;
   max-width: 90%;
 }
 
@@ -114,12 +116,16 @@ html, body {
   flex-wrap: wrap;
 }
 
-.auth-form-links {
-  align-content: center;
+.auth-form-actions {
   align-items: center;
   display: flex;
+  flex-flow: column nowrap;
   gap: 1rem;
-  justify-content: center;
+  justify-content: flex-start;
+
+  a:not(.gra-btn) {
+    font-size: 0.9em;
+  }
 }
 
 .row {
@@ -156,8 +162,15 @@ html, body {
 
           .feed-title {
             flex-grow: 1;
+            overflow: hidden;
             text-overflow: ellipsis;
             text-wrap: nowrap;
+
+            &.extended {
+              overflow: initial;
+              text-overflow: initial;
+              text-wrap: balance;
+            }
           }
 
           .feed-actions {
@@ -171,8 +184,8 @@ html, body {
           .icon-outer {
             .icon {
               cursor: pointer;
-              height: 0.8em;
-              width: 0.8em;
+              height: 1.5rem;
+              width: 1.5rem;
             }
           }
         }
@@ -199,6 +212,13 @@ html, body {
 
         .gra-list {
           padding: 0;
+
+          .gra-list-item {
+            a {
+              justify-content: flex-start;
+              text-align: left;
+            }
+          }
         }
 
         &.edit-form-container, &.delete-form-container {
