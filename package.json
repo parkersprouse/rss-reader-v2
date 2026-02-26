@@ -41,7 +41,7 @@
     "@rollup/plugin-terser": "^0.2.1",
     "concurrently": "^8.2.2",
     "csso-cli": "^4.0.2",
-    "rollup": "^3.29.5",
+    "rollup": "^3.30.0",
     "sass": "^1.80.6"
   }
 }
