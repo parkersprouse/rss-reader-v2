@@ -5,9 +5,13 @@ cmds = ['...', 'npm install -g corepack', 'corepack enable', 'corepack prepare p
 dependsOn = ['setup']
 cmds = ['...']
 
-[phases.build]
+[phases.prebuild]
 dependsOn = ['install']
-cmds = ['...', 'bundle exec hanami db migrate', 'pnpm run build', 'bundle exec hanami assets precompile']
+cmds = ['...', 'bundle exec hanami db migrate']
+
+[phases.build]
+dependsOn = ['prebuild']
+cmds = ['...', 'pnpm run build', 'bundle exec hanami assets precompile']
 
 [start]
 dependsOn = ['build']
